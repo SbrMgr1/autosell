@@ -11,12 +11,12 @@
     <!--    <link rel="stylesheet" >-->
 </head>
 <body>
-<nav th:replace="/front/layouts/header::header-navbar"></nav>
+<nav th:replace="/user/layouts/header::header-navbar"></nav>
 <h3>This is the content written in layout.</h3>
 <div id="main-content" layout:fragment="main-content" class="container content p-15">
     This content will be replaced if the page using the layout also defines a layout:fragment="content" segment.
 </div>
-<div th:replace="/front/layouts/footer :: footer-menu"></div>
+<div th:replace="/user/layouts/footer :: footer-menu"></div>
 <script th:src="@{/js_resources/jquery.min.js}"></script>
 <script th:src="@{/js_resources/bootstrap.min.js}"></script>
 <script th:src="@{/js_resources/script.js}"></script>
