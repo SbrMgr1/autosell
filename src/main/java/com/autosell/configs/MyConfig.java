@@ -48,8 +48,6 @@ public class MyConfig implements WebMvcConfigurer {
                 .addResourceLocations("/public", "classpath:/static/images/")
                 .setCachePeriod(31556926);
 
-
-
     }
 
     @Bean
