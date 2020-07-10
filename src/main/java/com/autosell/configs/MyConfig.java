@@ -44,7 +44,6 @@ public class MyConfig implements WebMvcConfigurer {
                 .addResourceLocations("/public", "classpath:/static/js/")
                 .setCachePeriod(31556926);
 
-
         registry.addResourceHandler("/image_resources/**")
                 .addResourceLocations("/public", "classpath:/static/images/")
                 .setCachePeriod(31556926);
