@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
@@ -31,7 +32,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <input type="text" name="param" class="form-control" placeholder="Search By Name" th:placeholder="#{nav.SearchByName}">
+                        <input type="text" name="param" class="form-control" placeholder="Search By Name"
+                               th:placeholder="#{nav.SearchByName}">
                         <span class="input-group-addon theme-input-group-addon">
                             <button type="submit">
                                 <i class="glyphicon glyphicon-search"></i>
