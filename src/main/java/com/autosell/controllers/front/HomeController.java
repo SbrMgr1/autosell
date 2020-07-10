@@ -1,4 +1,4 @@
-package com.autosell.controllers;
+package com.autosell.controllers.front;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +10,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
-        return "index";
+        return "front/index";
     }
 }
