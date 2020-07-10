@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <title>Thymeleaf</title>
+    <link rel="stylesheet" href="" th:href="@{/css_resources/bootstrap.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/css_resources/style.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/font_awesome_resources/font-awesome.css}"/>
+    <!--    <link rel="stylesheet" >-->
+</head>
+<body>
+<nav th:replace="front/layouts/header::header-navbar"></nav>
+<h3>This is the content written in layout.</h3>
+<div id="main-content" layout:fragment="main-content" class="container content p-15">
+    This content will be replaced if the page using the layout also defines a layout:fragment="content" segment.
+</div>
+<div th:replace="front/layouts/footer :: footer-menu"></div>
+<script th:src="@{/js_resources/jquery.min.js}"></script>
+<script th:src="@{/js_resources/bootstrap.min.js}"></script>
+<script th:src="@{/js_resources/script.js}"></script>
+</body>
+</html>
