@@ -9,7 +9,41 @@
 </head>
 <body>
 <div id="main-content" layout:fragment="main-content">
-    Sample
+    <div class="container content p-15">
+        <div class="mt-100 mb-100 row">
+            <form class="col-md-offset-4 col-md-4" th:object="${user}" action="/signup" method="post">
+                <h3><span th:text="${label}"></span> Registration form</h3>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" th:field="*{firstName}" />
+                    <p class="text-danger" th:errors="*{firstName}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" th:field="*{lastName}" value="">
+                    <p class="text-danger" th:errors="*{lastName}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="userName">Username</label>
+                    <input type="text" class="form-control" id="Username" name="*{userName}" value="">
+                    <p class="text-danger" th:errors="*{userName}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="*{email}" value="">
+                    <p class="text-danger" th:errors="*{email}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="*{password}" value="">
+                    <p class="text-danger" th:errors="*{password}"></p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-log-in"></span> SignUp</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>
