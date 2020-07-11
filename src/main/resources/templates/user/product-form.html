@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{user/layouts/layout}">
+    <head>
+        <title>Thymeleaf</title>
+        <!--    <link rel="stylesheet" >-->
+    </head>
+    <body>
+        <div id="main-content" layout:fragment="main-content">
+            <div id="wrapper">
+                <div id="page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Add Product</h1>
+
+<!--                            <button class="btn btn-success add-edit-btn" href="#demo" data-toggle="collapse">Add/Edit</button>-->
+<!--                            <div id="demo" class="collapse">-->
+                                <div id="demo">
+                                <form  class="product-form" th:action="@{/account/addproduct}" th:object="${product}" method="post" action="#">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-name">Product Name</label>
+                                                <input type="text" th:field="*{name}" id="product-name">
+                                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect firstName</p>
+
+                                            </div>
+                                        </div>
+<!--                                        <div class="col-sm-6">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <label for="product-category">Product Category</label>-->
+<!--                                                <select type="text" class="form-control" id="product-category" name="catId" required>-->
+<!--                                                    <option value="">Choose Product Category</option>-->
+<!--                                                    <c:forEach items="${catlist}" var="category">-->
+<!--                                                        <option value="${category.value.id}">${category.value.name}</option>-->
+<!--                                                    </c:forEach>-->
+<!--                                                </select>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-image">Product Image</label>
+                                                <input type="file" th:field="*{product_image}" id="product-image">
+                                                <p th:if="${#fields.hasErrors('product_image')}" th:errors="*{product_image}" th:errorclass="fieldError">Incorrect image </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-unitPrice">Product Price</label>
+
+                                                <input type="text" th:field="*{price}" id="product-unitPrice">
+                                                <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:errorclass="fieldError">Incorrect price</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-tax">Tax</label>
+                                                <input type="text" th:field="*{tax}" id="product-tax">
+                                                <p th:if="${#fields.hasErrors('tax')}" th:errors="*{tax}" th:errorclass="fieldError">Incorrect tax</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-desc">Product Description</label>
+                                                <textarea type="text" th:field="*{description}" id="product-desc" rows="4"></textarea>
+                                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="fieldError" class="form-control">Incorrect firstName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+<!--                                    <input type="hidden" th:field="*{added_by}" th:value="${user.id}">-->
+                                    <div class="row">
+                                        <div class="text-danger error-container col-sm-6">
+                                            <ul th:if="${#fields.hasErrors('*')}">
+                                                <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button type="submit" style="margin-bottom: 15px" class="btn btn-success">Submit</button>
+                                </form>
+                            </div>
+<!--                            <c:set var="count" value="0" scope="page" />-->
+<!--                            <table class="table table-hover product-table">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>#</th>-->
+<!--                                    <th>Product Name</th>-->
+<!--                                    <th style="width: 10%">Product Image</th>-->
+<!--                                    <th>Product Category</th>-->
+<!--                                    <th class="text-right">Unit Price</th>-->
+<!--                                    <th class="text-right">Tax</th>-->
+<!--                                    <th>Action</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+
+<!--                                <c:forEach items="${productList}" var="product" >-->
+<!--                                    <c:set var="count" value="${count + 1}" scope="page"/>-->
+<!--                                    <tr data-key="${product.id}" data-desc="${product.desc}">-->
+<!--                                        <td>${count}</td>-->
+<!--                                        <td>${product.name}</td>-->
+<!--                                        <td><img alt="${product.name}" class="img-responsive" src="<c:url value="/assets/images/${product.producImg}"/>"/></td>-->
+<!--                                        <td data-cat="${product.catId}">${catlist[product.catId].name}</td>-->
+<!--                                        <td class="text-right">${product.unitPrice}</td>-->
+<!--                                        <td class="text-right">${product.tax}</td>-->
+<!--                                        <td>-->
+<!--                                            <a class="btn btn-primary btn-xs edit-btn"><i class="fa fa-edit"></i></a>-->
+<!--                                            <a class="btn btn-danger btn-xs delete-btn"><i class="fa fa-trash-o"></i></a>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </c:forEach>-->
+
+<!--                                </tbody>-->
+<!--                            </table>-->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /#page-wrapper -->
+
+            </div>
+        </div>
+
+    </body>
+</html>
