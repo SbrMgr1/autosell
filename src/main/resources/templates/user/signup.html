@@ -23,15 +23,16 @@
                     <input type="text" class="form-control" id="lastName" th:field="*{lastName}" value="">
                     <p class="text-danger" th:errors="*{lastName}"></p>
                 </div>
-                <div class="form-group">
-                    <label for="userName">Username</label>
-                    <input type="text" class="form-control" id="Username" name="*{userName}" value="">
-                    <p class="text-danger" th:errors="*{userName}"></p>
-                </div>
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" id="email" name="*{email}" value="">
                     <p class="text-danger" th:errors="*{email}"></p>
+                </div>
+                <div class="form-group">
+                    <label for="userName">Username</label>
+                    <input type="text" class="form-control" id="Username" name="*{userName}" value="">
+                    <p class="text-danger" th:errors="*{userName}"></p>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
