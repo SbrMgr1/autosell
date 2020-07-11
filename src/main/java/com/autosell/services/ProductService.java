@@ -1,4 +1,7 @@
 package com.autosell.services;
 
-public class ProductService {
+import com.autosell.domains.Product;
+
+public interface ProductService {
+    public Product save(Product product);
 }
