@@ -36,7 +36,7 @@ public class SignUpController {
             user.setRole(RoleEnum.ROLE_BUYER);
             userService.save(user);
             redirectAttributes.addFlashAttribute("success_msg","Your account has been registered successfully. We will inform you in 24 hours.");
-            return "redirect:/signin";
+            return "redirect:/signup";
         }
 
     }
