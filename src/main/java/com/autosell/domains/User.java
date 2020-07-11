@@ -4,32 +4,41 @@ import com.autosell.configs.RoleEnum;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
-public class User {
+@Table(name = "user")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
+    @Size(min = 4,max = 50)
     private String firstName;
 
     @NotBlank
+    @Size(min = 4,max = 50)
     private String lastName;
 
     @NotBlank
+    @Size(min = 4,max = 50)
     private String userName;
 
     @NotBlank
+    @Size(min = 4,max = 50)
     private String password;
 
     @NotBlank
+    @Email
     private String email;
 
     private boolean adminVerification;
 
-    private Short userStatus;
+    private Short userStatus = 0;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "roleId", nullable = false)
