@@ -1,20 +1,37 @@
 package com.autosell.domains;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class BillingAddress {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    private String country;
+
     private String firstName;
+    private String lastName;
     private String addressL1;
     private String addressL2;
+    private String country;
     private String city;
     private String state;
     private String zipCode;
-    private int phoneNumber;
+    private long phoneNumber;
     private String extraInfo;
 
     public BillingAddress() {
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getCountry() {
         return country;
     }
@@ -71,11 +88,20 @@ public class BillingAddress {
         this.zipCode = zipCode;
     }
 
-    public int getPhoneNumber() {
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
