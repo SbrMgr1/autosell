@@ -30,13 +30,12 @@ public class SignupController{
     public String saveBuyer(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()){
             model.addAttribute("label","Buyer");
-            redirectAttributes.addFlashAttribute("error_msg","Error Occured.");
+            model.addAttribute("error_msg","Error Occured.");
             return "user/signup";
         }else{
             user.setRole(RoleEnum.ROLE_BUYER);
             userService.save(user);
             redirectAttributes.addFlashAttribute("success_msg","Your account has been registered successfully. We will inform you in 24 hours.");
-
             return "redirect:/signin";
         }
 
