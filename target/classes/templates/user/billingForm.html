@@ -10,56 +10,50 @@
 <body>
 <div id="main-content" layout:fragment="main-content">
     <div class="container">
-
+    <!--/*@thymesVar id="billingAddress" type=""*/-->
     <form th:action= "@{/billingAddress_save}" th:object="${billingAddress}" method="post">
         <h2 class="mb-3">Billing address</h2>
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input th:text="firstName" class="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="Enter first Name">
+                <input th:field="*{firstName}" class="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="Enter first Name">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="country">Last Name</label>
-                <input th:text="lastName" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Enter Last Name">
+                <input th:field="*{lastName}" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Enter Last Name">
             </div>
         </div>
         <div class="form-group">
             <label for="addressL1">Country/Region</label>
-            <input th:text="addressL1" placeholder="Street Adress, PoBox, company name, c/o" class="form-control" id="addressL1" aria-describedby="addressL1Help">
+            <input th:field="*{addressL1}" placeholder="Street Adress, PoBox, company name, c/o" class="form-control" id="addressL1" aria-describedby="addressL1Help">
         </div>
         <div class="form-group">
             <label for="addressL2">Address line 2</label>
-            <input th:text="addressL2" class="form-control" id="addressL2" aria-describedby="addressL2Help" placeholder="Appartment, building, suite, unit, floor, etc">
+            <input th:field="*{addressL2}" class="form-control" id="addressL2" aria-describedby="addressL2Help" placeholder="Appartment, building, suite, unit, floor, etc">
         </div>
 
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="country">Country/Region</label>
-                <input th:text="country" class="form-control" id="country" aria-describedby="countryHelp" placeholder="Enter Country/Region">
+                <input th:field="*{country}" class="form-control" id="country" aria-describedby="countryHelp" placeholder="Enter Country/Region">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="city">City</label>
-                <input th:text="city" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
+                <input th:field="*{city}" class="form-control" id="city" aria-describedby="cityHelp" placeholder="Enter City">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="state">State / Province / Region</label>
-                <input th:text="state" class="form-control" id="state" aria-describedby="stateHelp" placeholder="Enter State">
+                <input th:field="*{state}" class="form-control" id="state" aria-describedby="stateHelp" placeholder="Enter State">
             </div>
             <div class="col-md-2 mb-3">
                 <label for="zipCode">Zip Code</label>
-                <input th:text="zipCode" class="form-control" id="zipCode" aria-describedby="zipCodeHelp" placeholder="Enter Zip Code">
+                <input th:field="*{zipCode}" class="form-control" id="zipCode" aria-describedby="zipCodeHelp" placeholder="Enter Zip Code">
             </div>
         </div>
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input th:text="phoneNumber" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Enter Phone number">
+            <input th:field="*{phoneNumber}" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Enter Phone number">
             <small id="phoneHelp" class="form-text text-muted">May be used to assist delivery</small>
-        </div>
-        <h4>Add delivery instructions (optional)</h4>
-        <div class="form-group">
-
-            <label for="extraInfo">Do we need additional instructions to find this address? </label>
-            <textarea id="extraInfo" th:text="extraInfo" class="form-control is-invalid" placeholder="Please enter extra information"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 

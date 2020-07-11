@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class BillingAddress {
+public class ShippingAddress {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
@@ -20,10 +20,19 @@ public class BillingAddress {
     private String state;
     private String zipCode;
     private long phoneNumber;
+    private String extraInfo;
+    private boolean sameBilling;
 
-    public BillingAddress() {
+    public ShippingAddress() {
     }
 
+    public boolean isSameBilling() {
+        return sameBilling;
+    }
+
+    public void setSameBilling(boolean sameBilling) {
+        this.sameBilling = sameBilling;
+    }
     public long getId() {
         return id;
     }
@@ -102,5 +111,13 @@ public class BillingAddress {
 
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(String extraInfo) {
+        this.extraInfo = extraInfo;
     }
 }

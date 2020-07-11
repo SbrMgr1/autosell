@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BillingAddressController {
@@ -16,7 +15,7 @@ public class BillingAddressController {
     BillingAddressService billingAddressService;
     @GetMapping(value = {"/billingAddress_input"})
     public String billingAddressForm(@ModelAttribute("billingAddress")BillingAddress billing){
-        return "user/shippingBilling";
+        return "user/billingForm";
     }
     @PostMapping(value = {"/billingAddress_save"})
     public String saveBillingAddress(@ModelAttribute("billingAddress")BillingAddress billing, Model model){
