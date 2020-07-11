@@ -12,7 +12,6 @@
 </head>
 <body>
 <nav th:replace="/user/layouts/header::header-navbar"></nav>
-<h3>This is the content written in layout.</h3>
 <div id="main-content" layout:fragment="main-content" class="container content p-15">
     This content will be replaced if the page using the layout also defines a layout:fragment="content" segment.
 </div>
