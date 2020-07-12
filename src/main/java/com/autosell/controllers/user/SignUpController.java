@@ -1,7 +1,6 @@
 package com.autosell.controllers.user;
 
 import com.autosell.configs.RoleEnum;
-import com.autosell.domains.Role;
 import com.autosell.domains.User;
 import com.autosell.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class SignUpController {
             model.addAttribute("error_msg","Error Occured.");
             return "user/signup";
         }else{
-            user.setRole(RoleEnum.ROLE_BUYER);
+            user.setAuthorities(RoleEnum.ROLE_BUYER);
             userService.save(user);
             redirectAttributes.addFlashAttribute("success_msg","Your account has been registered successfully. We will inform you in 24 hours.");
             return "redirect:/signup";
@@ -52,7 +51,7 @@ public class SignUpController {
             model.addAttribute("error_msg","Error Occured.");
             return "user/signup";
         }else{
-            user.setRole(RoleEnum.ROLE_SELLER);
+            user.setAuthorities(RoleEnum.ROLE_SELLER);
             userService.save(user);
             redirectAttributes.addFlashAttribute("success_msg","Your account has been registered successfully. We will inform you in 24 hours.");
             return "redirect:/signup";
