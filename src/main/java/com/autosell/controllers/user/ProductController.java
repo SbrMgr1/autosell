@@ -2,26 +2,20 @@ package com.autosell.controllers.user;
 
 import com.autosell.domains.Product;
 import com.autosell.services.ProductService;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping( value = {"/account"})
 public class ProductController {
     @Autowired
     private MessageSource messageSource;
@@ -30,19 +24,21 @@ public class ProductController {
     WebApplicationContext servletContext;
     @Autowired
     ProductService productService;
-    @ModelAttribute("products")
-    List<Product> getAllProduct(Model model)
+
+
+    @GetMapping("/account/product-list")
+    public String showDetails(Model model)
     {
-        return productService.findAll();
+        model.addAttribute("products",productService.findAll());
+        return "user/product-list";
     }
 
-
-    @GetMapping("/product-form")
+    @GetMapping("/account/product-add")
     public String showProductForm(@ModelAttribute("product") Product product, Model model)
     {
         return "user/product-form";
     }
-    @PostMapping("/addproduct")
+    @PostMapping("/account/product-add")
     public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes)
     {
 
@@ -80,11 +76,7 @@ public class ProductController {
         return "redirect:/account/product-details";
 
     }
-    @GetMapping("/product-details")
-    public String showDetails(Model model)
-    {
-        return "user/show-product-details";
-    }
+
 
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
     public String showEditForm(@PathVariable("id") long id,Model model)
