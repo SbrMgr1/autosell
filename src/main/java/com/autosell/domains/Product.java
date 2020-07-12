@@ -1,9 +1,11 @@
 package com.autosell.domains;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,18 +16,22 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @NotBlank()
+    @NotBlank
     @Size(min = 4, max = 50, message = "{Size.name.validation}")
     String name;
-    @NotBlank
+    @NotNull
+    @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
     Float price;
-    @NotBlank
+    @NotNull
+    @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
     Float tax;
-    @NotBlank
+//    @NotNull
     Long cat_id;
     String description;
+
     String product_image;
-    @NotNull
+
+//    @NotNull
     Long added_by;
 
     public Product() {
@@ -95,4 +101,6 @@ public class Product implements Serializable {
     public void setAdded_by(Long added_by) {
         this.added_by = added_by;
     }
+
+
 }

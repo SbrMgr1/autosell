@@ -17,13 +17,13 @@
 <!--                            <button class="btn btn-success add-edit-btn" href="#demo" data-toggle="collapse">Add/Edit</button>-->
 <!--                            <div id="demo" class="collapse">-->
                                 <div id="demo">
-                                <form  class="product-form" th:action="@{/account/addproduct}" th:object="${product}" method="post" action="#">
+                                <form  class="product-form" th:action="@{/account/addproduct}" th:object="${product}" method="post" action="#" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product-name">Product Name</label>
-                                                <input type="text" th:field="*{name}" id="product-name">
-                                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="fieldError">Incorrect firstName</p>
+                                                <input type="text" th:field="*{name}" id="product-name" class="form-control">
+                                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Incorrect firstName</p>
 
                                             </div>
                                         </div>
@@ -43,8 +43,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product-image">Product Image</label>
-                                                <input type="file" th:field="*{product_image}" id="product-image">
-                                                <p th:if="${#fields.hasErrors('product_image')}" th:errors="*{product_image}" th:errorclass="fieldError">Incorrect image </p>
+                                                <input type="text" th:field="*{product_image}" id="product-image" class="form-control">
+                                                <p th:if="${#fields.hasErrors('product_image')}" th:errors="*{product_image}" class="text-danger">Incorrect image </p>
                                             </div>
                                         </div>
                                     </div>
@@ -53,16 +53,16 @@
                                             <div class="form-group">
                                                 <label for="product-unitPrice">Product Price</label>
 
-                                                <input type="text" th:field="*{price}" id="product-unitPrice">
-                                                <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:errorclass="fieldError">Incorrect price</p>
+                                                <input type="text" th:field="*{price}" id="product-unitPrice" class="form-control">
+                                                <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger" >Incorrect price</p>
 
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product-tax">Tax</label>
-                                                <input type="text" th:field="*{tax}" id="product-tax">
-                                                <p th:if="${#fields.hasErrors('tax')}" th:errors="*{tax}" th:errorclass="fieldError">Incorrect tax</p>
+                                                <input type="text" th:field="*{tax}" id="product-tax" class="form-control">
+                                                <p th:if="${#fields.hasErrors('tax')}" th:errors="*{tax}" class="text-danger">Incorrect tax</p>
                                             </div>
                                         </div>
                                     </div>
@@ -70,12 +70,12 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product-desc">Product Description</label>
-                                                <textarea type="text" th:field="*{description}" id="product-desc" rows="4"></textarea>
-                                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="fieldError" class="form-control">Incorrect firstName</p>
+                                                <textarea  th:field="*{description}" id="product-desc" rows="4" class="form-control"></textarea>
+                                                <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger" >Incorrect firstName</p>
                                             </div>
                                         </div>
                                     </div>
-<!--                                    <input type="hidden" th:field="*{added_by}" th:value="${user.id}">-->
+                                    <input type="hidden" th:field="*{added_by}" th:value="121344">
                                     <div class="row">
                                         <div class="text-danger error-container col-sm-6">
                                             <ul th:if="${#fields.hasErrors('*')}">
