@@ -4,6 +4,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -26,6 +28,7 @@ public class MyConfig implements WebMvcConfigurer {
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setUseCodeAsDefaultMessage(true);
         return messageSource;
+
     }
 
     @Override
@@ -49,6 +52,14 @@ public class MyConfig implements WebMvcConfigurer {
                 .setCachePeriod(31556926);
 
     }
+    @Bean
+    public LocalValidatorFactoryBean validator(){
+
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource());
+        return bean;
+
+    }
 
     @Bean
     public LocaleResolver localeResolver() {
@@ -56,10 +67,19 @@ public class MyConfig implements WebMvcConfigurer {
         return localeResolver;
     }
 
+
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("locale");
         registry.addInterceptor(localeChangeInterceptor);
+    }
+
+    @Bean
+    public CommonsMultipartResolver commonsMultipartResolver(){
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxInMemorySize(10240000);
+        return commonsMultipartResolver;
     }
 }

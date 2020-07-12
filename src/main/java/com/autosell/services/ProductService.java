@@ -1,4 +1,14 @@
 package com.autosell.services;
 
-public class ProductService {
+import com.autosell.domains.Product;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ProductService {
+    public Product save(Product product);
+    public List<Product> findAll();
+    public void deleteById(Long id);
+
+    Optional<Product> findById(long id);
 }

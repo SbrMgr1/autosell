@@ -1,5 +1,7 @@
 package com.autosell.domains;
 
+import com.autosell.annotations.EmailUnique;
+import com.autosell.annotations.UserNameUnique;
 import com.autosell.configs.RoleEnum;
 import org.hibernate.annotations.GeneratorType;
 
@@ -26,14 +28,17 @@ public class User implements Serializable {
 
     @NotBlank
     @Size(min = 4,max = 50)
+    @UserNameUnique
     private String userName;
 
     @NotBlank
     @Size(min = 4,max = 50)
     private String password;
 
+
     @NotBlank
     @Email
+    @EmailUnique
     private String email;
 
     private boolean adminVerification;
@@ -68,6 +73,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 

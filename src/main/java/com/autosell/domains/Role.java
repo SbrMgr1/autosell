@@ -22,10 +22,10 @@ public class Role implements Serializable {
     }
     public Role(RoleEnum roleName) {
 
-        if(this.roleName.equals(RoleEnum.ROLE_ADMIN)){
+        if(roleName.equals(RoleEnum.ROLE_ADMIN)){
             this.id = 1;
             this.roleName = "ROLE_ADMIN";
-        }else if(this.roleName.equals(RoleEnum.ROLE_SELLER)){
+        }else if(roleName.equals(RoleEnum.ROLE_SELLER)){
             this.id = 2;
             this.roleName = "ROLE_SELLER";
         }else{
