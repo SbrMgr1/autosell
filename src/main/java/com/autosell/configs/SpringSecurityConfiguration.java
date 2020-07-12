@@ -1,10 +1,14 @@
 package com.autosell.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -21,7 +25,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("select user_name, password from user where user_name = ?")
+                .usersByUsernameQuery("select user_name, password,admin_verification from user where user_name = ?")
                 .authoritiesByUsernameQuery("select user_name, authority from authority where user_name = ?");
     }
 
@@ -40,9 +44,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/signin");
 
-
         //Those two settings below is to enable access h2 database via browser
         http.csrf().disable();
         http.headers().frameOptions().disable();
+    }
+    @Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+//        return NoOpPasswordEncoder.getInstance();
     }
 }
