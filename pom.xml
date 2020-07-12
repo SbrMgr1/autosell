@@ -60,20 +60,7 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
             <version>2.4.1</version>
         </dependency>
-<<<<<<< HEAD
-<!--<<<<<<< HEAD-->
 
-<!--=======-->
-=======
->>>>>>> 243cc95881bee0d6a51f257bbbaec52c33be73a5
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-<!--            <version>1.4</version>-->
-        </dependency>
-<<<<<<< HEAD
-
-=======
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -82,7 +69,7 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
->>>>>>> 243cc95881bee0d6a51f257bbbaec52c33be73a5
+
     </dependencies>
 
     <build>
