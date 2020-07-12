@@ -4,11 +4,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("")
+
 @Controller
 public class staticPagesController {
-    @GetMapping(value = "/page/about-us}")
+    @GetMapping(value = "/page/about-us")
     public String contactUs(){
-        return "user/contactUs";
+        return "user/aboutUs";
     }
+    @GetMapping(value = "/aboutus")
+    public String aboutUs(){
+        return "user/aboutUs";
+    }
+    @GetMapping(value = "/privacypolicy")
+    public String privacyPolicy(){
+        return "user/privacyPolicy";
+    }
+
 }
