@@ -45,4 +45,18 @@ public class SignUpController {
         model.addAttribute("label","Seller");
         return "user/signup";
     }
+    @PostMapping(value = "/signup-seller")
+    public String saveSellee(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("label","Seller");
+            model.addAttribute("error_msg","Error Occured.");
+            return "user/signup";
+        }else{
+            user.setRole(RoleEnum.ROLE_SELLER);
+            userService.save(user);
+            redirectAttributes.addFlashAttribute("success_msg","Your account has been registered successfully. We will inform you in 24 hours.");
+            return "redirect:/signup";
+        }
+
+    }
 }
