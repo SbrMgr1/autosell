@@ -2,7 +2,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
@@ -67,9 +69,22 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="/page/about-us"><span class="fa fa-info-circle"></span> <span>About Us</span></a></li>
-
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span sec:authentication="name">John</span>
+                                    (<span sec:authorize="hasRole('ROLE_SELLER')">seller</span><span sec:authorize="hasRole('ROLE_BUYER')">buyer</span>)
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li sec:authorize="hasRole('ROLE_SELLER')"><a href="#" >Order List</a></li>
+                                    <li sec:authorize="hasRole('ROLE_BUYER')"><a href="#" >Order History</a></li>
+                                    <li><a href="#" th:href="@{/logout}">SignOut</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="/login" th:href="@{/signin}"><span class="fa fa-sign-in"></span> <span>Sign in</span></a>
                             </li>

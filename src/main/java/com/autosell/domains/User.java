@@ -3,19 +3,21 @@ package com.autosell.domains;
 import com.autosell.annotations.EmailUnique;
 import com.autosell.annotations.UserNameUnique;
 import com.autosell.configs.RoleEnum;
-import org.hibernate.annotations.GeneratorType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -32,7 +34,7 @@ public class User implements Serializable {
     private String userName;
 
     @NotBlank
-    @Size(min = 4,max = 50)
+    @Size(min = 4)
     private String password;
 
 
@@ -41,15 +43,15 @@ public class User implements Serializable {
     @EmailUnique
     private String email;
 
-    private boolean adminVerification;
+    private boolean adminVerification = true;
 
     private Short userStatus = 0;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "roleId", nullable = false)
-    private Role role;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private List<Authority> authorities;
 
     public User() {
+        authorities = new ArrayList<Authority>();
     }
 
     public Long getId() {
@@ -73,8 +75,8 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-
-        this.password = password;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
     }
 
     public String getEmail() {
@@ -117,11 +119,11 @@ public class User implements Serializable {
         this.userStatus = userStatus;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Authority> getAuthorities() {
+        return authorities;
     }
 
-    public void setRole(RoleEnum roleEnum) {
-        this.role = new Role(roleEnum);
+    public void setAuthorities(RoleEnum roleEnum) {
+        this.authorities.add(new Authority(this,roleEnum));
     }
 }
