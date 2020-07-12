@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/user/layouts/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Billing address Saved</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-Billing address Saved
+<div id="main-content" layout:fragment="main-content">
+    <div class="container-sm">
+        <table>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">firstName</th>
+                <th scope="col">lastName</th>
+                <th scope="col">addressL1</th>
+                <th scope="col">addressL2</th>
+                <th scope="col">country</th>
 
+                <th scope="col">street</th>
+                <th scope="col">state</th>
+                <th scope="col">city</th>
+                <th scope="col">zipCode</th>
+            </tr>
+            <tr th:each="billA, iterStat : ${billingAddress}">
+                <td scope="row" th:text="${iterStat.count}"></td>
+                <td th:text="${billA.firstname}"></td>
+                <td th:text="${billA.lastName}"></td>
+                <td th:text="${billA.addressL1}"></td>
+                <td th:text="${billA.addressL2}"></td>
+                <td th:text="${billA.country}"></td>
+                <td th:text="${billA.state}"></td>
+                <td th:text="${billA.city}"></td>
+                <td th:text="${billA.zipCode}"></td>
+                <td th:text="${billA.phoneNumber}"></td>
+            </tr>
+        </table>
+  </div>
+
+
+</div>
 </body>
 </html>
