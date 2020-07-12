@@ -76,10 +76,10 @@ public class MyConfig implements WebMvcConfigurer {
         registry.addInterceptor(localeChangeInterceptor);
     }
 
-    @Bean
-    public CommonsMultipartResolver commonsMultipartResolver(){
-        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        commonsMultipartResolver.setMaxInMemorySize(10240000);
-        return commonsMultipartResolver;
-    }
+//    @Bean
+//    public CommonsMultipartResolver commonsMultipartResolver(){
+//        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+//        commonsMultipartResolver.setMaxInMemorySize(10240000);
+//        return commonsMultipartResolver;
+//    }
 }
