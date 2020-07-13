@@ -1,17 +1,24 @@
 package com.autosell.controllers.user;
 
+import com.autosell.domains.Product;
 import com.autosell.domains.ProductOrder;
 import com.autosell.services.ProductOrderService;
+import com.autosell.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/orders")
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+@RequestMapping("/buyer/account")
 @Controller
 public class OrderController {
     @Autowired
     ProductOrderService productOrderService;
+    ProductService productService;
 
     @RequestMapping(value = {"","/"})
     public String getOrders(Model model){
@@ -38,5 +45,19 @@ public class OrderController {
         productOrderService.deleteById(id);
         model.addAttribute("orders",productOrderService.findAll());
         return "admin/orderForm";
+    }
+    @PostMapping(value = "/order")
+    public String order(@ModelAttribute("order")ProductOrder order,Model model){
+
+        return "user/orderSuccess";
+    }
+    @GetMapping(value = "/checkout")
+    public String orderForm(Model model){
+        Optional<Product> product =productService.findById(1);
+        List<Product> products= Arrays.asList((product.get()));
+        model.addAttribute("products",products);
+        ProductOrder productOrder=new ProductOrder();
+        model.addAttribute("order",productOrder);
+        return "user/orderForm";
     }
 }

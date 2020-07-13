@@ -3,6 +3,7 @@ package com.autosell.domains;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -14,12 +15,12 @@ public class Content implements Serializable {
 
 
     //@UniqueSlug
+
     @Id
+    @NotNull
     private String slug;
-    //@NotEmpty
-    //@Size(min = 5, max = 50)
+    @NotBlank
     private String name;
-    //@NotEmpty
     private String cont;
 
     public Content() {

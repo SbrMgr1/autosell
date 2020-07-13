@@ -3,18 +3,25 @@ package com.autosell.controllers.admin;
 import com.autosell.domains.Content;
 import com.autosell.services.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 
+import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/administration/cms-managent")
 public class ContentController {
+    @Autowired
+    private MessageSource messageSource;
 
+    @Autowired
+    WebApplicationContext servletContext;
     @Autowired
     ContentService contentService;
 
@@ -27,12 +34,13 @@ public class ContentController {
         return "admin/cms_list";
     }
     @GetMapping("/add")
-    public String getContent(@ModelAttribute("con")Content con){
+    public String getContent(@ModelAttribute("content")Content content){
         return "admin/contentForm";
     }
     @PostMapping("/add")
-    public String addContent(@ModelAttribute("content")Content content, BindingResult bindingResult, Model model){
+    public String addContent(@Valid @ModelAttribute("content")Content content, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()) {
+            model.addAttribute("content",content);
             return "admin/contentForm";
         }
         else{
@@ -46,18 +54,11 @@ public class ContentController {
     }
 
     @GetMapping(value = "/edit/{slug}")
-    public String editContent(@ModelAttribute("content")Content content, @PathVariable("slug")String slug,Model model){
-//        if(bindingResult.hasErrors()){
-//            return "admin/contentForm";
-//        }
-//        else{
-            // con=contentService.find(slug);
-            model.addAttribute(content);
+    public String editContent(@Valid @ModelAttribute("content")Content content, BindingResult bindingResult, @PathVariable("slug")String slug, Model model){
+            model.addAttribute("content",content);
             Content a= contentService.find(slug);
             model.addAttribute("content",a);
             return "admin/editContentForm";
-      //  }
-
     }
     @GetMapping(value = "/delete/{slug}")
     public String deleteContent(@PathVariable("slug")String slug,Model model){
