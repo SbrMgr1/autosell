@@ -67,4 +67,24 @@ $(function () {
     $('.criteria label').on('click', function (e) {
         e.stopImmediatePropagation();
     })
+
+    $("#sameBilling").on("click",function () {
+        if($(this).is(":checked")){
+            $.ajax({
+                url:"/buyer/address/shipping/get-billing",
+                dataType:"json",
+                type:"post",
+                contentType:"application/json",
+                data:JSON.stringify({}),
+            }).done(function (response){
+                for(key in response){
+                    $('[name="'+key+'"]').val(response[key]);
+                }
+            })
+        }else{
+            $("#shipping-addr-form")[0].reset();
+        }
+
+
+    })
 })
