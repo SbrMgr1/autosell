@@ -3,15 +3,12 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout
-http://www.ultraq.net.nz/thymeleaf/layout
-http://www.ultraq.net.nz/thymeleaf/layout
-http://www.ultraq.net.nz/thymeleaf/layout ">
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Thymeleaf</title>
-    <link rel="stylesheet" href="" th:href="@{/css_resources/bootstrap.css}"/>
-    <link rel="stylesheet" href="" th:href="@{/css_resources/style.css}"/>
-    <link rel="stylesheet" href="" th:href="@{/font_awesome_resources/font-awesome.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/font-awesome/css/font-awesome.css}"/>
     <!--    <link rel="stylesheet" >-->
 </head>
 <body>
@@ -20,8 +17,8 @@ http://www.ultraq.net.nz/thymeleaf/layout ">
     This content will be replaced if the page using the layout also defines a layout:fragment="content" segment.
 </div>
 <div th:replace="/user/layouts/footer :: footer-menu"></div>
-<script th:src="@{/js_resources/jquery.min.js}"></script>
-<script th:src="@{/js_resources/bootstrap.min.js}"></script>
-<script th:src="@{/js_resources/script.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

@@ -56,4 +56,5 @@ public class ContentController {
         model.addAttribute("contents",contents);
         return "admin/cms_list";
     }
+
 }

@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head>
     <title>Thymeleaf</title>
-    <link rel="stylesheet" href="" th:href="@{/css_resources/bootstrap.css}"/>
-    <link rel="stylesheet" href="" th:href="@{/css_resources/sb-admin.css}"/>
-    <link rel="stylesheet" href="" th:href="@{/font_awesome_resources/font-awesome.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/css/sb-admin.css}"/>
+    <link rel="stylesheet" href="" th:href="@{/font-awesome/css/font-awesome.css}"/>
     <!--    <link rel="stylesheet" >-->
 </head>
 <body>
@@ -210,7 +211,7 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <span sec:authentication="name">UserName</span>(admin) <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -218,7 +219,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="/administration/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -262,7 +263,7 @@
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a href="/administration/product-cat">Product Category Lists</a>
+                                <a th:href="@{/administration/product-category}">Product Category Lists</a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -297,9 +298,9 @@
 
 </div>
 <!-- /#wrapper -->
-<script th:src="@{/js_resources/jquery.min.js}"></script>
-<script th:src="@{/js_resources/bootstrap.min.js}"></script>
-<script th:src="@{/js_resources/jquery.metisMenu.js}"></script>
-<script th:src="@{/js_resources/sb-admin.js}"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/sb-admin.js}"></script>
 </body>
 </html>

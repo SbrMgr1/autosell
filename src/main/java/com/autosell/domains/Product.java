@@ -1,7 +1,6 @@
 package com.autosell.domains;
 
 
-
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -13,26 +12,35 @@ import java.io.Serializable;
 
 @Entity
 public class Product implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @NotBlank
     @Size(min = 4, max = 50, message = "{Size.name.validation}")
     String name;
+
     @NotNull
     @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
     Float price;
+
     @NotNull
     @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
     Float tax;
-//    @NotNull
-    Long cat_id;
-    String description;
 
-    String product_image;
+    @NotNull
+    Integer catId;
 
-//    @NotNull
-    Long added_by;
+    @Size(max = 65535)
+    private String description;
+
+    private String productImage;
+
+    private boolean soldStatus = false;
+
+    //@NotNull
+    Long addedBy;
 
     public Product() {
 
@@ -70,12 +78,12 @@ public class Product implements Serializable {
         this.tax = tax;
     }
 
-    public Long getCat_id() {
-        return cat_id;
+    public Integer getCatId() {
+        return catId;
     }
 
-    public void setCat_id(Long cat_id) {
-        this.cat_id = cat_id;
+    public void setCatId(Integer catId) {
+        this.catId = catId;
     }
 
     public String getDescription() {
@@ -86,21 +94,27 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public String getProduct_image() {
-        return product_image;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setProduct_image(String product_image) {
-        this.product_image = product_image;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
-    public Long getAdded_by() {
-        return added_by;
+    public Long getAddedBy() {
+        return addedBy;
     }
 
-    public void setAdded_by(Long added_by) {
-        this.added_by = added_by;
+    public void setAddedBy(Long addedBy) {
+        this.addedBy = addedBy;
     }
 
+    public boolean isSoldStatus() {
+        return soldStatus;
+    }
 
+    public void setSoldStatus(boolean soldStatus) {
+        this.soldStatus = soldStatus;
+    }
 }
