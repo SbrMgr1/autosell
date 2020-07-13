@@ -1,0 +1,36 @@
+package com.autosell.controllers.user;
+
+import com.autosell.domains.Product;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.model.IModel;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@Controller
+public class CartDetails {
+
+    @GetMapping("/buyer/cart-details")
+    public String cartDetails(HttpSession session, Model model, HttpServletRequest request) {
+        HashMap<Long, Product> cartItems = (HashMap<Long, Product>) session.getAttribute("cart_item");
+        System.out.println("---------------------------------------"+cartItems.size()+"------------------------------");
+        if (cartItems == null) {
+            cartItems = new HashMap<Long, Product>();
+        }
+        List<Product> products = cartItems.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
+        double grand_total = products.stream().mapToDouble((pro) -> pro.getQty() * pro.getPrice()).sum();
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        session.setAttribute("grand_total", formatter.format(grand_total));
+        session.setAttribute("products", products);
+
+      return("user/cart_details");
+    }
+}

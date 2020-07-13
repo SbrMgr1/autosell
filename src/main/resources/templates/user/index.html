@@ -14,7 +14,7 @@
 
 
             <div th:each="product:${products}">
-                <a class="item-container ${added_var}" href="#" th:attr="data-key=${product}">
+                <a class="item-container ${added_var}" href="#" th:attr="data-key=${product.id}">
                     <div class="col-lg-3 col-md-3 col-sm-6">
                         <div class="item-box form-group mt-15 col-xs-12 pb-15 pt-15">
                             <img th:src="@{/images/{product_image}(product_image=${product.productImage})}" class="img-responsive mt-15">
