@@ -13,8 +13,6 @@ public class Content implements Serializable {
 
 
     //@UniqueSlug
-   // @NotEmpty
-    //@NotNull
     @Id
     private String slug;
     //@NotEmpty
