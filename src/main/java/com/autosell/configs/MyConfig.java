@@ -15,8 +15,9 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 public class MyConfig implements WebMvcConfigurer {
 
 
@@ -31,27 +32,28 @@ public class MyConfig implements WebMvcConfigurer {
 
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("/css_resources/**")
-                .addResourceLocations("/public", "classpath:/static/css/")
-                .setCachePeriod(31556926);
-        registry.addResourceHandler("/font_awesome_resources/**")
-                .addResourceLocations("/public", "classpath:/static/font-awesome/css/")
-                .setCachePeriod(31556926);
-        registry.addResourceHandler("/fonts/**")
-                .addResourceLocations("/public", "classpath:/static/fonts/")
-                .setCachePeriod(31556926);
-        registry.addResourceHandler("/js_resources/**")
-                .addResourceLocations("/public", "classpath:/static/js/")
-                .setCachePeriod(31556926);
-
-        registry.addResourceHandler("/image_resources/**")
-                .addResourceLocations("/public", "classpath:/static/images/")
-                .setCachePeriod(31556926);
-
-    }
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//
+//        registry.addResourceHandler("/css_resources/**")
+//                .addResourceLocations("/public", "classpath:/static/css/")
+//                .setCachePeriod(31556926);
+//        registry.addResourceHandler("/font_awesome_resources/**")
+//                .addResourceLocations("/public", "classpath:/static/font-awesome/css/")
+//                .setCachePeriod(31556926);
+//        registry.addResourceHandler("/fonts/**")
+//                .addResourceLocations("/public", "classpath:/static/fonts/")
+//                .setCachePeriod(31556926);
+//        registry.addResourceHandler("/js_resources/**")
+//                .addResourceLocations("/public", "classpath:/static/js/")
+//                .setCachePeriod(31556926);
+//
+//        registry.addResourceHandler("/image_resources/**")
+//                .addResourceLocations("/public", "classpath:/static/images/")
+//                .setCachePeriod(31556926);
+//
+//    }
+    
     @Bean
     public LocalValidatorFactoryBean validator(){
 
