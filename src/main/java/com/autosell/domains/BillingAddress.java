@@ -1,22 +1,45 @@
 package com.autosell.domains;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class BillingAddress {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
 
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
+
+    @NotBlank
     private String addressL1;
+
     private String addressL2;
+
+    @NotBlank
+    @Size(max = 50)
     private String country;
+
+    @NotBlank
+    @Size(max = 50)
     private String city;
+
+    @NotBlank
+    @Size(max = 2)
     private String state;
+
+    @NotBlank
+    @Size(min = 2,max = 8)
     private String zipCode;
-    private long phoneNumber;
+
+    @NotBlank
+    @Size(max = 20, min = 8)
+    private String phoneNumber;
 
     @ManyToOne
     private User user;
@@ -24,19 +47,12 @@ public class BillingAddress {
     public BillingAddress() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public String getFirstName() {
@@ -45,6 +61,14 @@ public class BillingAddress {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddressL1() {
@@ -61,6 +85,14 @@ public class BillingAddress {
 
     public void setAddressL2(String addressL2) {
         this.addressL2 = addressL2;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getCity() {
@@ -87,20 +119,19 @@ public class BillingAddress {
         this.zipCode = zipCode;
     }
 
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
