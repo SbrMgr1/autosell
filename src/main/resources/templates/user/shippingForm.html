@@ -5,11 +5,11 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Shipping Address</title>
 </head>
 <body>
 <div id="main-content" layout:fragment="main-content">
-    <div class="container">
+    <div class="container mb-3">
         <form th:action= "@{/shippingAddress_save}" th:object="${shippingAddress}" method="post">
             <h2 class="mb-3">Shipping address</h2>
             <div class="row">
@@ -64,7 +64,7 @@
                 <input type="checkbox" class="form-check-input" id="sameBilling">
                 <label class="form-check-label" for="sameBilling">Do you want to use the same Billing address as the shipping address</label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Use this Address</button>
 
         </form>
     </div>

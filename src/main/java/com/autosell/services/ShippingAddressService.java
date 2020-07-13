@@ -1,20 +1,20 @@
 package com.autosell.services;
 
+import com.autosell.domains.BillingAddress;
 import com.autosell.domains.ShippingAddress;
 import com.autosell.repositories.ShippingAddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
-@Service
-@Transactional
-public class ShippingAddressService {
-    @Autowired
-    ShippingAddressRepository shippingAddressRepository;
+public interface ShippingAddressService {
 
-    public ShippingAddress save(ShippingAddress shippingAddress){
-        return shippingAddressRepository.save(shippingAddress);
+    public ShippingAddress save(ShippingAddress shippingAddress);
+    public List<ShippingAddress> getAllShippingAddress();
 
-    }
+    public ShippingAddress findById(long id);
+
+    public void delete(ShippingAddress shippingAddress);
 }
