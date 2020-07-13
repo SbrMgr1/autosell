@@ -3,6 +3,7 @@ package com.autosell.domains;
 import com.autosell.annotations.EmailUnique;
 import com.autosell.annotations.UserNameUnique;
 import com.autosell.configs.RoleEnum;
+import org.apache.tomcat.jni.Address;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -49,6 +50,15 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Authority> authorities;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ShippingAddress> shippingAddress;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Payment> payment;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<BillingAddress> billingAddress;
 
     public User() {
         authorities = new ArrayList<Authority>();
@@ -125,5 +135,29 @@ public class User implements Serializable {
 
     public void setAuthorities(RoleEnum roleEnum) {
         this.authorities.add(new Authority(this,roleEnum));
+    }
+
+    public List<ShippingAddress> getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(List<ShippingAddress> shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public List<Payment> getPayment() {
+        return payment;
+    }
+
+    public void setPayment(List<Payment> payment) {
+        this.payment = payment;
+    }
+
+    public List<BillingAddress> getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(List<BillingAddress> billingAddress) {
+        this.billingAddress = billingAddress;
     }
 }
