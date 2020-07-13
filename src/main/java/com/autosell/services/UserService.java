@@ -9,12 +9,9 @@ public interface UserService {
     User save(User user);
     User findByEmail(String email);
     User findByUserName(String username);
-<<<<<<< HEAD
 //    List<BillingAddress> saveBillingAddressByID(long id);
-=======
     List<User> findAll();
     User FindById(Long id);
     boolean acceptById(Long id);
     boolean declinedById(Long id);
->>>>>>> 7568a5dcf8a3ff1368d5df6aacaab4cb2de6581b
 }

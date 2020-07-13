@@ -10,12 +10,9 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends CrudRepository<User,Long> {
     User findByEmail(String email);
     User findByUserName(String username);
-<<<<<<< HEAD
-//    User saveBillingAddressByID(long id);
-=======
 
+//    User saveBillingAddressByID(long id);
     @Modifying
     @Query("update User u set u.adminVerification = ?1 where u.id = ?2")
     Integer changeStatus(boolean status, Long id);
->>>>>>> 7568a5dcf8a3ff1368d5df6aacaab4cb2de6581b
 }
