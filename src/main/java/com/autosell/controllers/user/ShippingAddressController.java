@@ -1,35 +1,59 @@
 package com.autosell.controllers.user;
 
 
+import com.autosell.domains.BillingAddress;
 import com.autosell.domains.ShippingAddress;
 import com.autosell.repositories.ShippingAddressRepository;
+import com.autosell.services.BillingAddressService;
 import com.autosell.services.ShippingAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
+@RequestMapping(value = "/buyer/address/shipping")
 public class ShippingAddressController {
 
     @Autowired
     ShippingAddressService shippingAddressService;
-    @GetMapping(value = {"/shippingAddress_input"})
+
+    @Autowired
+    BillingAddressService billingAddressService;
+
+    @GetMapping(value = {"/",""})
     public String shippingAddressForm(@ModelAttribute("shippingAddress") ShippingAddress shippingAddress){
         return "user/shippingForm";
     }
-    @PostMapping(value = {"/shippingAddress_save"})
-    public String saveShippingAddress(@ModelAttribute("shippingAddress") ShippingAddress shippingAddress, Model model){
-        model.addAttribute("shippingAddress", shippingAddress);
-        shippingAddressService.save(shippingAddress);
-        return "redirect:saveShippingSuccess";
+    @PostMapping(value = {"/",""})
+    public String saveShippingAddress(@Valid  @ModelAttribute("shippingAddress") ShippingAddress shippingAddress,BindingResult result,HttpSession session, Model model){
+        if(result.hasErrors()){
+            return "user/shippingForm";
+        }else{
+
+            BillingAddress billingAddress = (BillingAddress) session.getAttribute("billingAddress");
+            billingAddressService.save(billingAddress);
+            shippingAddressService.save(shippingAddress);
+
+            session.setAttribute("billingAddress",null);
+            model.addAttribute("shippingAddress", shippingAddress);
+
+
+
+            return "redirect:/buyer/address/shipping/checkout-success";
+        }
     }
-    @GetMapping(value = {"/saveShippingSuccess"})
+    @PostMapping(value = "/get-billing")
+    public @ResponseBody BillingAddress getBilling(HttpSession session){
+        return (BillingAddress) session.getAttribute("billingAddress");
+    }
+    @GetMapping(value = {"/checkout-success"})
     public String shippingAddressSuccess(Model model){
+
         model.addAttribute("allShippingAddress", shippingAddressService.getAllShippingAddress());
         return "redirect:/payment_input";
     }

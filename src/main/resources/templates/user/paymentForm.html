@@ -37,20 +37,25 @@
         <div class="form-group">
             <label for="cardName">Card Name</label>
             <input th:field="*{cardName}" placeholder="Enter the name on the card" class="form-control" id="cardName" aria-describedby="cardNameHelp">
+            <p class="text-danger" th:errors="*{cardName}"></p>
         </div>
         <div class="form-group">
             <label for="cardNumber">Card Number</label>
             <input th:field="*{cardNumber}" class="form-control" id="cardNumber" aria-describedby="cardNumberHelp" placeholder="0000 0000 0000 0000 ">
+            <p class="text-danger" th:errors="*{cardNumber}"></p>
+
         </div>
 
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label for="cardExpiry">Card Expiry</label>
                 <input th:field="*{cardExpiry}" class="form-control" id="cardExpiry" aria-describedby="cardExpiryHelp" placeholder="MM/YY">
+                <p class="text-danger" th:errors="*{cardExpiry}"></p>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="CVV">CVV</label>
                 <input th:field="*{CVV}" class="form-control" id="CVV" aria-describedby="CVVHelp" placeholder="000">
+                <p class="text-danger" th:errors="*{CVV}"></p>
             </div>
         </div>
         <button type="submit" class="btn btn-primary mr-1">Submit</button>

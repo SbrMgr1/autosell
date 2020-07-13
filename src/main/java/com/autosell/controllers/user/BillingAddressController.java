@@ -8,41 +8,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "/buyer/address")
 public class BillingAddressController {
     @Autowired
     BillingAddressService billingAddressService;
     UserService userService;
     User user;
-    @GetMapping(value = {"/billingAddress_input"})
-    public String billingAddressForm(@ModelAttribute("billingAddress")BillingAddress billing){
+    @GetMapping(value = {"/",""})
+    public String billingAddressForm(@ModelAttribute("billingAddress") BillingAddress billingAddr){
         return "user/billingForm";
     }
-    @PostMapping(value = {"/billingAddress_save"})
-    public String saveBillingAddress(@ModelAttribute("billingAddress")BillingAddress billing, Model model, RedirectAttributes redirectAttributes){
-        //model.addAttribute("allBillingAddress", billingAddressService.getAllBillingAddress());
-        billingAddressService.save(billing);
+    @PostMapping(value = {"/",""})
+    public String saveBillingAddress(@Valid @ModelAttribute("billingAddress") BillingAddress billingAddr, BindingResult result, Model model, HttpSession session){
+        if(result.hasErrors()){
+            return "user/billingForm";
+        }else{
+            session.setAttribute("billingAddress", billingAddr);
+//            billingAddressService.save(billingAddr);
 //        List<BillingAddress> billingAdres = new ArrayList<BillingAddress>();
 //        billingAdres.add(billing);
 //        user.setBillingAddress(billingAdres);
 //        userService.saveBillingAddressByID(billing.getId());
-        redirectAttributes.addFlashAttribute(billing);
-        return "redirect:saveSuccess";
+//            redirectAttributes.addFlashAttribute(billingAddr);
+            return "redirect:/buyer/address/shipping";
+        }
+
     }
-    @GetMapping(value = {"/saveSuccess"})
-    public String billingAddressSuccess(Model model){
-        model.addAttribute("allBillingAddress", billingAddressService.getAllBillingAddress());
-        return "redirect:/shippingAddress_input";
-    }
+
     @GetMapping(value = {"/billingList"})
     public String billingAddressList(Model model){
         model.addAttribute("allBillingAddress", billingAddressService.getAllBillingAddress());

@@ -23,7 +23,7 @@
                                             <div class="form-group">
                                                 <label for="product-name">Product Name</label>
                                                 <input type="text" th:field="*{name}" id="product-name" class="form-control">
-                                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Incorrect firstName</p>
+                                                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Incorrect productName</p>
 
                                             </div>
                                         </div>
@@ -35,7 +35,7 @@
                                                     <option value="">Choose Product Category</option>
                                                     <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">Electronics</option>
                                                 </select>
-                                                <p th:if="${#fields.hasErrors('catId')}" th:errors="*{catId}" class="text-danger">Incorrect firstName</p>
+                                                <p th:if="${#fields.hasErrors('catId')}" th:errors="*{catId}" class="text-danger">Incorrect category</p>
                                             </div>
                                         </div>
                                     </div>
