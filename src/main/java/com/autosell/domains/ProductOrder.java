@@ -11,6 +11,7 @@ public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Long product_id;
     private Double product_price;
     private Integer product_qty;

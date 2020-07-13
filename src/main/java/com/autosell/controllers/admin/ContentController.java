@@ -35,19 +35,27 @@ public class ContentController {
         if (bindingResult.hasErrors()) {
             return "admin/contentForm";
         }
-        contentService.save(con);
+        else{
+            contentService.save(con);
 
-        List<Content> contents = contentService.getAllContents();
-        model.addAttribute("contents",contents);
-        return "admin/cms_list";
+            List<Content> contents = contentService.getAllContents();
+            model.addAttribute("contents",contents);
+            return "admin/cms_list";
+        }
+
     }
     @GetMapping(value = "/edit/{slug}")
-    public String editContent(@ModelAttribute("con")Content con,@PathVariable("slug")String slug,Model model){
+    public String editContent(@ModelAttribute("con")Content con,@PathVariable("slug")String slug,BindingResult bindingResult,Model model){
+        if(bindingResult.hasErrors()){
+            return "admin/contentForm";
+        }
+        else{
+            Content content=contentService.find(slug);
+            model.addAttribute(content);
 
-        Content content=contentService.find(slug);
-        model.addAttribute(content);
+            return "admin/editContentForm";
+        }
 
-        return "admin/editContentForm";
     }
     @GetMapping(value = "/delete/{slug}")
     public String deleteContent(@PathVariable("slug")String slug,Model model){

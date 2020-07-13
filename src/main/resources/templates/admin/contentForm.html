@@ -23,10 +23,12 @@
                 <div class="form-group">
                     <label for="slugg">Slug</label>
                     <input th:filed="*{slug}" class="form-control" id="slugg"  placeholder="Enter slug" th:name="slug">
+                    <p class="text-danger" th:errors="*{slug}"></p>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input th:filed="*{name}" class="form-control" id="name"  placeholder="Enter name" th:name="name">
+                    <p class="text-danger" th:errors="*{name}"></p>
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>

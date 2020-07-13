@@ -1,6 +1,10 @@
 package com.autosell.domains;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 @Entity
 @Table(name = "Content")
@@ -8,11 +12,16 @@ public class Content implements Serializable {
 
     private static final long serialVersionUID = 3678107792576131001L;
 
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
+
+    //@UniqueSlug
+    @NotEmpty
+    @NotNull
     @Id
     private String slug;
+    @NotEmpty
+    @Size(min = 5, max = 50, message = "{Size.name.validation}")
     private String name;
+    @NotEmpty
     private String content;
 
     public Content() {
