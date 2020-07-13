@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="main-content" layout:fragment="main-content">
-    <div class="container">
+    <div class="small-middle-container">
     <form th:action= "@{/payment_save}" th:object="${payment}" method="post">
         <h2 id="heading2" class="text-danger mb-3">Payment Method</h2>
         <div class="row">
@@ -22,12 +22,12 @@
             </div>
 
 
-            <div class="custom-control custom-radio col-md-3 mb-3">
+            <div class="custom-control custom-radio col-md-2 mb-3">
                 <input type="radio" class="custom-control-input" id="debitCard" th:field="*{paymentType}" th:value="debitCard">
                 <label class="custom-control-label" for="debitCard">Debit Card</label>
             </div>
 
-            <div class="custom-control custom-radio col-md-2 mb-3">
+            <div class="custom-control custom-radio col-md-3 mb-3">
                 <input type="radio" class="custom-control-input" id="payPal" th:field="*{paymentType}" th:value="payPal">
                 <label class="custom-control-label" for="payPal">PayPal</label>
             </div>
@@ -53,7 +53,7 @@
                 <input th:field="*{CVV}" class="form-control" id="CVV" aria-describedby="CVVHelp" placeholder="000">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mr-1">Submit</button>
 
     </form>
     </div>
