@@ -13,15 +13,15 @@ public class Content implements Serializable {
 
 
     //@UniqueSlug
-    @NotEmpty
-    @NotNull
+   // @NotEmpty
+    //@NotNull
     @Id
     private String slug;
-    @NotEmpty
-    @Size(min = 5, max = 50, message = "{Size.name.validation}")
+    //@NotEmpty
+    //@Size(min = 5, max = 50)
     private String name;
-    @NotEmpty
-    private String content;
+    //@NotEmpty
+    private String cont;
 
     public Content() {
     }
@@ -34,10 +34,10 @@ public class Content implements Serializable {
 //        this.id = id;
 //    }
 
-    public Content(String slug,String name, String content){
+    public Content(String slug,String name, String cont){
         this.slug = slug;
         this.name=name;
-        this.content =content;
+        this.cont =cont;
     }
 
     public String getSlug() {
@@ -48,8 +48,8 @@ public class Content implements Serializable {
         return name;
     }
 
-    public String getContent() {
-        return content;
+    public String getCont() {
+        return cont;
     }
 
     public void setSlug(String slug) {
@@ -60,7 +60,7 @@ public class Content implements Serializable {
         this.name = name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCont(String content) {
+        this.cont = content;
     }
 }

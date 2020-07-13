@@ -20,8 +20,8 @@ public class ContentController {
 
     @GetMapping(value = {"","/"})
     public String index(Model model){
-        Content content = new Content("aboutus","about us","Content Here");
-        contentService.save(content);
+        //Content content = new Content("aboutus","about us","Content Here");
+        //contentService.save(content);
         List<Content> contents = contentService.getAllContents();
         model.addAttribute("contents",contents);
         return "admin/cms_list";
@@ -31,12 +31,12 @@ public class ContentController {
         return "admin/contentForm";
     }
     @PostMapping("/add")
-    public String addContent(@ModelAttribute("con")Content con, BindingResult bindingResult, Model model){
+    public String addContent(@ModelAttribute("content")Content content, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()) {
             return "admin/contentForm";
         }
         else{
-            contentService.save(con);
+            contentService.save(content);
 
             List<Content> contents = contentService.getAllContents();
             model.addAttribute("contents",contents);
@@ -44,17 +44,19 @@ public class ContentController {
         }
 
     }
-    @GetMapping(value = "/edit/{slug}")
-    public String editContent(@ModelAttribute("con")Content con,@PathVariable("slug")String slug,BindingResult bindingResult,Model model){
-        if(bindingResult.hasErrors()){
-            return "admin/contentForm";
-        }
-        else{
-            Content content=contentService.find(slug);
-            model.addAttribute(content);
 
+    @GetMapping(value = "/edit/{slug}")
+    public String editContent(@ModelAttribute("content")Content content, @PathVariable("slug")String slug,Model model){
+//        if(bindingResult.hasErrors()){
+//            return "admin/contentForm";
+//        }
+//        else{
+            // con=contentService.find(slug);
+            model.addAttribute(content);
+            Content a= contentService.find(slug);
+            model.addAttribute("content",a);
             return "admin/editContentForm";
-        }
+      //  }
 
     }
     @GetMapping(value = "/delete/{slug}")

@@ -15,7 +15,7 @@ public class PageController {
     @Autowired
     ContentService contentService;
 
-    @GetMapping("page/{slug}")
+    @GetMapping("/page/{slug}")
     public String getPage(@PathVariable("slug") String slug, Model model)
     {
         Content content=contentService.find(slug);
