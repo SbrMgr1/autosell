@@ -46,4 +46,10 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Category(Integer id, @Size(min = 6, max = 20) @NotBlank String name, @Size(max = 65535) String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
 }
