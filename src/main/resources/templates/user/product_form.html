@@ -27,6 +27,26 @@
 
                                             </div>
                                         </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-category">Product Category</label>
+                                                <select type="text" class="form-control" id="product-category" th:field="*{catId}">
+                                                    <option value="">Choose Product Category</option>
+                                                    <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">Electronics</option>
+                                                </select>
+                                                <p th:if="${#fields.hasErrors('catId')}" th:errors="*{catId}" class="text-danger">Incorrect firstName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product-tax">Tax</label>
+                                                <input type="text" th:field="*{tax}" id="product-tax" class="form-control">
+                                                <p th:if="${#fields.hasErrors('tax')}" th:errors="*{tax}" class="text-danger">Incorrect tax</p>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product-unitPrice">Product Price</label>
@@ -36,36 +56,17 @@
 
                                             </div>
                                         </div>
-<!--                                        <div class="col-sm-6">-->
-<!--                                            <div class="form-group">-->
-<!--                                                <label for="product-category">Product Category</label>-->
-<!--                                                <select type="text" class="form-control" id="product-category" name="catId" required>-->
-<!--                                                    <option value="">Choose Product Category</option>-->
-<!--                                                    <c:forEach items="${catlist}" var="category">-->
-<!--                                                        <option value="${category.value.id}">${category.value.name}</option>-->
-<!--                                                    </c:forEach>-->
-<!--                                                </select>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product-image">Product Image</label>
-                                                <input type="text" th:field="*{product_image}" id="product-image" class="form-control">
-                                                <p th:if="${#fields.hasErrors('product_image')}" th:errors="*{product_image}" class="text-danger">Incorrect image </p>
+                                                <input type="file" name="product_file" id="product-image">
+                                                <input type="hidden" th:field="*{productImage}">
+                                                <p th:if="${#fields.hasErrors('productImage')}" th:errors="*{productImage}" class="text-danger">Incorrect image </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
 
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="product-tax">Tax</label>
-                                                <input type="text" th:field="*{tax}" id="product-tax" class="form-control">
-                                                <p th:if="${#fields.hasErrors('tax')}" th:errors="*{tax}" class="text-danger">Incorrect tax</p>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -76,7 +77,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" th:field="*{added_by}" th:value="121344">
+                                    <input type="hidden" th:field="*{addedBy}" th:value="121344">
                                     <div class="row">
                                         <div class="text-danger error-container col-sm-6">
                                             <ul th:if="${#fields.hasErrors('*')}">
