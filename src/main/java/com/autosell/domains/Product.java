@@ -1,6 +1,7 @@
 package com.autosell.domains;
 
 
+import org.springframework.data.domain.Sort;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -41,6 +42,11 @@ public class Product implements Serializable {
 
     //@NotNull
     Long addedBy;
+
+
+
+    private Integer qty;
+
 
     public Product() {
 
@@ -116,5 +122,13 @@ public class Product implements Serializable {
 
     public void setSoldStatus(boolean soldStatus) {
         this.soldStatus = soldStatus;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
     }
 }
