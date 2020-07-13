@@ -36,7 +36,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/account/product-list")
+@RequestMapping("/seller/product-list")
 public class ProductController {
     @Autowired
     private MessageSource messageSource;
