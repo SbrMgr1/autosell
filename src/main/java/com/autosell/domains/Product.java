@@ -32,6 +32,7 @@ public class Product implements Serializable {
     @NotNull
     Integer catId;
 
+    @Size(max = 65535)
     private String description;
 
     private String productImage;

@@ -17,6 +17,7 @@ public class Category {
     @NotBlank
     private String name;
 
+    @Size(max = 65535)
     private String description;
 
     public Category() {
