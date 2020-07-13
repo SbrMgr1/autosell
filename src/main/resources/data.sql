@@ -12,5 +12,16 @@ insert into category(id,name,description) values (1,'Electronics','Laptops,Hard 
 insert into category(id,name,description) values (2,'Jewellery','Necklace,bracelets,ear-rings...');
 insert into category(id,name,description) values (3,'Mobile Phones','iPhone,Samsung,Nokia,redMI...');
 insert into category(id,name,description) values (4,'Home Decoration','Crockery sets,jars,containers,cookware....');
-insert into category(id,name,description) values (5,'Baby care','Soaps,oil,body lotion,diapers....')
+insert into category(id,name,description) values (5,'Baby care','Soaps,oil,body lotion,diapers....');
 
+insert into product (id,name,price, tax, cat_id, description, product_image, added_by) values (1,'Laptop',1122.12,10,1,'this is boot','macbook-pro.jpg',2);
+insert into product (id,name,price, tax, cat_id, description, product_image, added_by) values (3,'Boat',1122.12,10,4,'this is boat','boat.jpg',2);
+insert into product (id,name,price, tax, cat_id, description, product_image, added_by) values (4,'Glasses',1122.12,10,4,'this is glasses','glasses.png',2);
+insert into product (id,name,price, tax, cat_id, description, product_image, added_by) values (5,'Iphoe11',1122.12,10,3,'this is iphone','iphone11.jpg',2);
+insert into product (id,name,price, tax, cat_id, description, product_image, added_by) values (2,'Laptop',1122.12,10,1,'this is boot','macbook-pro.jpg',2);
+
+-- CMS
+insert into content(slug,content,name) values('privacy-policy','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Privacy Policy');
+insert into content(slug,content,name) values('terms-and-conditions','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Terms and Condition');
+insert into content(slug,content,name) values('about-us','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','About');
+insert into content(slug,content,name) values('faq','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','FAQ');
