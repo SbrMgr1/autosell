@@ -10,9 +10,11 @@
 <body>
 <div id="main-content" layout:fragment="main-content">
     <div class="container content p-15">
-        <div class="mt-100 mb-100 row">
+        <div class="mt-80 mb-120 row">
             <form class="col-md-offset-4 col-md-4" th:object="${user}" method="post">
                 <h3><span th:text="${label}"></span> Registration form</h3>
+                <p th:if="${label == 'Buyer'}">Buy product and gain points.</p>
+                <p th:if="${label == 'Seller'}">Start your business here.</p>
                 <div th:if="${error_msg != null}">
                     <div class="alert alert-danger" role="alert" th:text="${error_msg}">Error message</div>
                 </div>

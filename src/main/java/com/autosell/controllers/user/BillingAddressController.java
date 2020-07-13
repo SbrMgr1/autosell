@@ -5,9 +5,12 @@ import com.autosell.services.BillingAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class BillingAddressController {
@@ -18,10 +21,39 @@ public class BillingAddressController {
         return "user/billingForm";
     }
     @PostMapping(value = {"/billingAddress_save"})
-    public String saveBillingAddress(@ModelAttribute("billingAddress")BillingAddress billing, Model model){
-        model.addAttribute("billingAddress", billing);
+    public String saveBillingAddress(@ModelAttribute("billingAddress")BillingAddress billing, Model model, RedirectAttributes redirectAttributes){
+        //model.addAttribute("allBillingAddress", billingAddressService.getAllBillingAddress());
         billingAddressService.save(billing);
+        redirectAttributes.addFlashAttribute(billing);
+        return "redirect:saveSuccess";
+    }
+    @GetMapping(value = {"/saveSuccess"})
+    public String billingAddressSuccess(Model model){
+        model.addAttribute("allBillingAddress", billingAddressService.getAllBillingAddress());
+        return "/user/billingSuccess";
+    }
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        BillingAddress billing = billingAddressService.findById(id);
 
-        return "user/billingSuccess";
+        model.addAttribute("billingAddressUpdate", billing);
+        return "/user/update_Billing";
+    }
+    @PostMapping(value={"/edit/update/{id}"})
+    public String updateBillingAddress(@PathVariable("id") long id, BillingAddress billing, BindingResult result, Model model){
+        if(result.hasErrors()){
+            billing.setId(id);
+            return "/user/update_Billing";
+        }
+        billingAddressService.save(billing);
+        model.addAttribute("allBillingAddress",billingAddressService.getAllBillingAddress());
+        return "/user/billingSuccess";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id, BillingAddress billing, Model model) {
+        billing = billingAddressService.findById(id);
+        billingAddressService.delete(billing);
+        model.addAttribute("allBillingAddress", billingAddressService.getAllBillingAddress());
+        return "/user/billingSuccess";
     }
 }

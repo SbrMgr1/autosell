@@ -25,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> findAllByAddedBy(Long id) {
+        return productRepository.findAllByAddedBy(id);
+    }
+
+    @Override
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }

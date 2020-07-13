@@ -1,14 +1,18 @@
 package com.autosell.controllers.user;
 
 import com.autosell.domains.Product;
+import com.autosell.domains.User;
 import com.autosell.helpers.MyHelper;
 import com.autosell.services.CategoryService;
 import com.autosell.services.FilesStorageService;
 import com.autosell.services.ProductService;
+import com.autosell.services.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,7 +36,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/account/product-list")
+@RequestMapping("/seller/product-list")
 public class ProductController {
     @Autowired
     private MessageSource messageSource;
@@ -47,9 +51,19 @@ public class ProductController {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    UserService userService;
+
+    @ModelAttribute
+    public void globalHandler(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user =  userService.findByUserName(authentication.getName());
+        model.addAttribute("seller",user);
+    }
+
     @GetMapping(value = {"", "/"})
     public String index(Model model) {
-        model.addAttribute("products", productService.findAll());
+        model.addAttribute("products", productService.findAllByAddedBy(((User)model.getAttribute("seller")).getId()));
         return "user/product_list";
     }
 
@@ -92,6 +106,9 @@ public class ProductController {
             model.addAttribute("categories", categoryService.findAll());
             return "user/product_form";
         } else {
+
+            product.setAddedBy(((User)model.getAttribute("seller")).getId());
+
             productService.save(product);
             redirectAttributes.addFlashAttribute("success_msg", "Product has been created successfully.");
             return "redirect:/account/product-list";
@@ -128,9 +145,7 @@ public class ProductController {
                 String localeMsg = messageSource.getMessage("unableToUpload", null, null, loc);
                 bindingResult.addError(new FieldError("product", "product_image", "", false, null, null, localeMsg));
             }
-
         }
-
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryService.findAll());
             return "user/product_form";

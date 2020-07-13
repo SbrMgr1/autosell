@@ -15,11 +15,18 @@ public class PageController {
     @Autowired
     ContentService contentService;
 
+<<<<<<< HEAD
     @GetMapping("/page/{slug}")
     public String getPage(@PathVariable("slug") String slug, Model model)
     {
         Content content=contentService.find(slug);
         model.addAttribute("content",content);
+=======
+    @GetMapping("page/{slug}")
+    public String getPage(@PathVariable("slug") String slug, Model model) {
+        Content content = contentService.find(slug);
+        model.addAttribute("content", content);
+>>>>>>> bb60739288dcc20301311fba52d07a654d1b4548
         return "user/page";
 
     }

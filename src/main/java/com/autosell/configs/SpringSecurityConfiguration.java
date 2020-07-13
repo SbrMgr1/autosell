@@ -33,9 +33,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/administration").hasRole("ADMIN")
-                .antMatchers("/account").hasRole("SELLER")
-                .antMatchers("/account").hasRole("BUYER")
+                .antMatchers("/administration","/administration/*","/administration/**").hasRole("ADMIN")
+                .antMatchers("/seller","/seller/*","/seller/**").hasRole("SELLER")
+                .antMatchers("/buyer","/buyer/*","/buyer/**").hasRole("BUYER")
                 .antMatchers("/","/database/**").permitAll()
                 .and().formLogin().loginPage("/signin")
                 .successHandler(successHandler)
