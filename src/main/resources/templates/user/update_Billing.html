@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/user/layouts/layout}"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{/user/layouts/layout}"
 >
 <head>
     <meta charset="UTF-8">
-    <title>Shipping Address</title>
+    <title>Update billing Address</title>
 </head>
 <body>
 <div id="main-content" layout:fragment="main-content">
-    <div class="container mb-3">
-        <form th:action= "@{/shippingAddress_save}" th:object="${shippingAddress}" method="post">
-            <h2 class="mb-3">Shipping address</h2>
+    <div class="container">
+        <h2>Update billing Address</h2>
+        <!--/*@thymesVar id="billingAddressUpdate" type=""*/-->
+        <form th:action= "@{update/{id}(id=${billingAddressUpdate.id})}" th:object="${billingAddressUpdate}" method="post">
+            <h2 class="mb-3">Billing address</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="firstName">First name</label>
@@ -54,21 +56,13 @@
                 <input th:field="*{phoneNumber}" class="form-control" id="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Enter Phone number">
                 <small id="phoneHelp" class="form-text text-muted">May be used to assist delivery</small>
             </div>
-            <h4>Add delivery instructions (optional)</h4>
-            <div class="form-group">
-
-                <label for="extraInfo">Do we need additional instructions to find this address? </label>
-                <textarea id="extraInfo" th:field="*{extraInfo}" class="form-control is-invalid" placeholder="Please enter extra information"></textarea>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="sameBilling">
-                <label class="form-check-label" for="sameBilling">Do you want to use the same Billing address as the shipping address</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Use this Address</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
 
         </form>
     </div>
 </div>
+
+
 
 </body>
 </html>

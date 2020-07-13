@@ -192,3 +192,7 @@
 .added .add-to-cart-btn {
     display: inline-block !important;
 }
+.small-middle-container{
+    margin: auto;
+    width: 40%;
+}
