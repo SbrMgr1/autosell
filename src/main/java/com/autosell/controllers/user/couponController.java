@@ -13,6 +13,10 @@ public class couponController {
 
     @GetMapping(value = "/coupon")
     public String viewCoupon(@ModelAttribute("couponDets") Coupon coupon, Model model){
+        return "user/couponForm";
+    }
+    @PostMapping(value="/coupon_save")
+    public String saveCoupon(@ModelAttribute("coupons")Coupon coupon, Model model){
         return "user/couponDetails";
     }
 
