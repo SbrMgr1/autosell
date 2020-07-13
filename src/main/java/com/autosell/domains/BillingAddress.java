@@ -1,9 +1,6 @@
 package com.autosell.domains;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class BillingAddress {
@@ -20,6 +17,9 @@ public class BillingAddress {
     private String state;
     private String zipCode;
     private long phoneNumber;
+
+    @ManyToOne
+    private User user;
 
     public BillingAddress() {
     }
