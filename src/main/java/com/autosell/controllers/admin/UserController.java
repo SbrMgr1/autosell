@@ -11,12 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @Controller
 @RequestMapping(value = "/administration/users")
 public class UserController {
 
-//    @Autowired
-//    JavaMailSender javaMailSender;
+    @Autowired
+    JavaMailSender javaMailSender;
 
 
     @Autowired
@@ -32,15 +34,55 @@ public class UserController {
     public @ResponseBody
     boolean acceptUser(@PathVariable("id") long id) {
         try {
+            SimpleMailMessage mail = new SimpleMailMessage();
 
-//            SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//            simpleMailMessage.setSubject("Hi");
-//            simpleMailMessage.setText("Hi bro");
-//            simpleMailMessage.setTo("sbr.mgr1@gmail.com");
-//            javaMailSender.send(simpleMailMessage);
-//
+            User user = userService.findById(id);
+
+            mail.setFrom("AutoSell");
+            mail.setTo(user.getEmail());
+            mail.setSubject("Account Activated");
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("Hi");
+            stringBuffer.append(user.getFirstName());
+            stringBuffer.append(",");
+            stringBuffer.append("\n");
+            stringBuffer.append("Your account is activated in AutoSell.\n");
+            stringBuffer.append("Now you can login with your username and password.");
+            mail.setText(stringBuffer.toString());
+            javaMailSender.send(mail);
 
             return userService.acceptById(id);
+        } catch (NoSuchElementException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+
+    }
+    @PostMapping(value = "/decline/{id}")
+    public @ResponseBody
+    boolean declinetUser(@PathVariable("id") long id) {
+        try {
+            SimpleMailMessage mail = new SimpleMailMessage();
+
+            User user = userService.findById(id);
+
+            mail.setFrom("AutoSell");
+            mail.setTo(user.getEmail());
+            mail.setSubject("Account has been deactivated");
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("Hi");
+            stringBuffer.append(user.getFirstName());
+            stringBuffer.append(",");
+            stringBuffer.append("\n");
+            stringBuffer.append("Your account is deactivated in AutoSell.\n");
+            stringBuffer.append("If you want to know reason. You can contact with admin.");
+            mail.setText(stringBuffer.toString());
+            javaMailSender.send(mail);
+
+            return userService.declinedById(id);
+        } catch (NoSuchElementException e) {
+            return false;
         } catch (NullPointerException e) {
             return false;
         }

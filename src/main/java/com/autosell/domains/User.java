@@ -43,7 +43,7 @@ public class User implements Serializable {
     @EmailUnique
     private String email;
 
-    private boolean adminVerification = true;
+    private Short adminVerification = 0;
 
     private Short userStatus = 0;
 
@@ -103,11 +103,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public boolean isAdminVerification() {
+    public Short getAdminVerification() {
         return adminVerification;
     }
 
-    public void setAdminVerification(boolean adminVerification) {
+    public void setAdminVerification(Short adminVerification) {
         this.adminVerification = adminVerification;
     }
 

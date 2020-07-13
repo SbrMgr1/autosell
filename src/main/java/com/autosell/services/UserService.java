@@ -12,4 +12,6 @@ public interface UserService {
     User FindById(Long id);
     boolean acceptById(Long id);
     boolean declinedById(Long id);
+
+    User findById(long id);
 }
