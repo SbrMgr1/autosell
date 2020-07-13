@@ -11,7 +11,7 @@
 <div id="main-content" layout:fragment="main-content">
     <div class="row">
         <div class="col-md-12 form-group">
-            <a class="btn btn-success" th:href="@{/account/product-list/add}">Add a product</a>
+            <a class="btn btn-success" th:href="@{/seller/product-list/add}">Add a product</a>
         </div>
     </div>
     <div class="row">
@@ -53,8 +53,8 @@
                     <td th:text="${product.price}"/>
                     <td th:text="${product.tax}"/>
                     <td>
-                        <a class="btn btn-primary btn-xs edit-btn" th:href="@{/account/product-list/edit/{id}(id=${product.id})}"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-danger btn-xs delete-btn" th:href="@{/account/product-list/delete/{id}(id=${product.id})}"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-primary btn-xs edit-btn" th:href="@{/seller/product-list/edit/{id}(id=${product.id})}"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-danger btn-xs delete-btn" th:href="@{/seller/product-list/delete/{id}(id=${product.id})}"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
 
