@@ -44,7 +44,7 @@
             <div class="col-sm-1">
                 <div class="item-indicate">
                     <a th:href="@{/buyer/cart-details}"><span class="glyphicon glyphicon-shopping-cart"></span>
-                        <span class="item-count">0</span>
+                        <span class="item-count" th:text="${(session.cart_item != null)?session.cart_item.size():0}">0</span>
                     </a>
                 </div>
             </div>
