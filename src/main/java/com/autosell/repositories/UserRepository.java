@@ -14,5 +14,5 @@ public interface UserRepository extends CrudRepository<User,Long> {
 //    User saveBillingAddressByID(long id);
     @Modifying
     @Query("update User u set u.adminVerification = ?1 where u.id = ?2")
-    Integer changeStatus(boolean status, Long id);
+    Integer changeStatus(Short status, Long id);
 }

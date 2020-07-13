@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean acceptById(Long id) {
-        if(userRepository.changeStatus(true,id)>0){
+        if(userRepository.changeStatus((short) 1,id)>0){
             return true;
         }else{
             return false;
@@ -64,10 +65,21 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public boolean declinedById(Long id) {
-        if(userRepository.changeStatus(false,id)>0){
+        if(userRepository.changeStatus((short) 2,id)>0){
             return true;
         }else{
             return false;
         }
+    }
+
+    @Override
+    public User findById(long id) {
+         Optional<User> userOptional= userRepository.findById(id);
+         try{
+             return (User)userOptional.get();
+         }catch (NoSuchElementException e){
+
+             return null;
+         }
     }
 }
