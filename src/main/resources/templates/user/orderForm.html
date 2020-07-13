@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{user/layouts/layout}"
+>
+<head>
+    <title>Sample</title>
+    <!--    <link rel="stylesheet" >-->
+</head>
+<body>
+
+<div id="main-content" layout:fragment="main-content">
+<!--    <form method="post" th:action="@{/buyer/account/order}" th:object="${order}">-->
+<!--    <table class="table table-hover">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th scope="col">#</th>-->
+<!--            <th scope="col">Ordered Products</th>-->
+<!--            <th scope="col">Order Status</th>-->
+<!--            <th scope="col">Action</th>-->
+
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="order:${orders}">-->
+<!--            <th scope="row" th:text="${order.id}"></th>-->
+<!--            <td th:text="${order.product_id}"></td>-->
+<!--            <td th:text="${order.order_status}"></td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/orders/edit/{id}(id = ${order.id})}">Edit</a><br>-->
+<!--                <a th:href="@{/orders/delete/{id}(id = ${order.id})}">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--    </form>-->
+    <table class="table table-hover">
+
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Status</th>
+            <th scope="col">Price</a></th>
+            <th scope="col">Products</th>
+            <th scope="col">Shipping Address</th>
+<!--            <th scope="col">Action </th>-->
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row" th:text="${order.id}"></th>
+            <td th:text="${order.order_status}"></td>
+
+            <td th:text="${order.product_price}"></td>
+
+            <td th:each="pro:${products}">
+                <span th:text="${pro.id}"></span>
+                <span th:text="${pro.name}"></span>
+            </td>
+            <td scope="row" th:text="${order.address_id}"></td>
+<!--            <td>-->
+<!--                <a class="btn btn btn-primary" th:href="@{/administration/cms-managent/edit/{id}(id = ${content.slug})}"> Edit</a>-->
+<!--                <a class="btn btn btn-danger" th:href="@{/administration/cms-managent/delete/{id}(id = ${content.slug})}">Delete</a>-->
+
+<!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

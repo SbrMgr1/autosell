@@ -4,8 +4,7 @@
       layout:decorate="~{/admin/layouts/layout}"
 >
 <head>
-    <title>Sample</title>
-    <!--    <link rel="stylesheet" >-->
+    <title>Edit Order Form</title>
 </head>
 <body>
 <div layout:fragment="page-wrapper">
@@ -13,16 +12,16 @@
         <div class="col-lg-12">
             <h1 class="page-header">Edit Order Form</h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
     <div class="row">
         <div class="col-lg-12">
             Edit Content Form
-            <form method="post" th:action="@{/orders/save}" th:object="${order}">
+            <form method="post" th:action="@{/admin/account/save}" th:object="${order}">
                 <div class="form-group">
                     <label for="order-status">Order Status</label>
                     <input th:filed="*{order_status}" class="form-control" id="order-status" th:value="*{order_status}" th:name="order-status">
                 </div>
+                <input th:filed="*{id}" class="form-control" id="id" th:value="*{id}" th:name="id">
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>

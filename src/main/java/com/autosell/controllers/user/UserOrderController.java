@@ -15,9 +15,10 @@ import java.util.Optional;
 
 @RequestMapping("/buyer/account")
 @Controller
-public class OrderController {
+public class UserOrderController {
     @Autowired
     ProductOrderService productOrderService;
+    @Autowired
     ProductService productService;
 
     @RequestMapping(value = {"","/"})
@@ -53,8 +54,17 @@ public class OrderController {
     }
     @GetMapping(value = "/checkout")
     public String orderForm(Model model){
-        Optional<Product> product =productService.findById(1);
-        List<Product> products= Arrays.asList((product.get()));
+        Product product =productService.findById(1).get();
+        List<Product> products= Arrays.asList(product);
+        model.addAttribute("products",products);
+        ProductOrder productOrder=new ProductOrder();
+        model.addAttribute("order",productOrder);
+        return "user/orderForm";
+    }
+    @GetMapping(value = "/edit")
+    public String editOrder(Model model){
+        Product product2 =productService.findById(1).get();
+        List<Product> products= Arrays.asList(product2);
         model.addAttribute("products",products);
         ProductOrder productOrder=new ProductOrder();
         model.addAttribute("order",productOrder);

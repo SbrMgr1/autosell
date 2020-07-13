@@ -18,7 +18,7 @@ public class ProductOrder {
     private Long transaction_id;
     private float product_tax;
     private Long buyer_id;
-    private short order_status;
+    private String order_status;
     private Long address_id;
 
 
@@ -59,7 +59,7 @@ public class ProductOrder {
         return buyer_id;
     }
 
-    public short getOrder_status() {
+    public String getOrder_status() {
         return order_status;
     }
 
@@ -95,7 +95,7 @@ public class ProductOrder {
         this.buyer_id = buyer_id;
     }
 
-    public void setOrder_status(short order_status) {
+    public void setOrder_status(String order_status) {
         this.order_status = order_status;
     }
 
