@@ -16,8 +16,7 @@ public class PageController {
     ContentService contentService;
 
     @GetMapping("page/{slug}")
-    public String getPage(@PathVariable("slug") String slug, Model model)
-    {
+    public String getPage(@PathVariable("slug") String slug, Model model) {
         Content content=contentService.find(slug);
         model.addAttribute("content",content);
         return "user/page";
