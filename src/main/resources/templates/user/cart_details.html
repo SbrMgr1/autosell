@@ -31,14 +31,14 @@
                                 </a>
                             </td>
                             <td class="unit-price" th:attr="data-unitprice=${product.price}" th:text="${product.price}">
-                                USD${product.price}
+                                USD
                             </td>
 
                             <td>
-                                <input class="form-control qty-input" type="number" min="1" th:text="${product.qty}">
+                                <input class="form-control qty-input" type="number" min="1" th:value="${product.qty}">
                             </td>
-                            <td class="total-price" th:text="${product.qty*product.price}">
-                                USD ${product.qty*product.unitPrice}
+                            <td class="total-price" th:value="${product.qty*product.price}">
+                                USD
                             </td>
 
                             <td>

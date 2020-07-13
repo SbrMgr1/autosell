@@ -36,7 +36,6 @@ $(function () {
         $('.grand-total').text('USD ' + grandTotal.toFixed(2));
     }
     $('.qty-input').on('change', function () {
-        alert("here");
         var unitPrice = $(this).parents('tr').find('.unit-price').attr('data-unitprice');
         let totalprice = parseFloat(unitPrice) * $(this).val();
         if (totalprice > 0) {
