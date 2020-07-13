@@ -36,18 +36,21 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="user,count :${users}">
+                <tbody class="user-list">
+                <tr th:each="user,count :${users}" th:data-id="${user.id}">
                     <td th:text="${count.index+1}"></td>
                     <td th:text="${user.firstName}"></td>
                     <td th:text="${user.lastName}">Description</td>
                     <td th:text="${user.authorities}">Description</td>
-                    <td th:if="${user.adminVerification != true}">
+                    <td th:if="${user.adminVerification == 0}" class="action">
                         <a class="btn btn-xs btn-success accept-btn" th:data-id="${user.id}" th:href="@{/administration/users/edit/{id}(id=${user.id})}">Approve</a>
                         <a class="btn btn-xs btn-danger decline-btn" th:data-id="${user.id}" th:href="@{/administration/users/delete/{id}(id=${user.id})}">Decline</a>
                     </td>
-                    <td th:if="${user.adminVerification == true}">
+                    <td th:if="${user.adminVerification == 1}">
                         <span class="text-success">Verified <i class="fa fa-check"></i></span>
+                    </td>
+                    <td th:if="${user.adminVerification == 2}">
+                        <span class="text-danger">Declined <i class="fa fa-times"></i></span>
                     </td>
                 </tr>
                 </tbody>
