@@ -55,7 +55,11 @@ public class ShippingAddressController {
     public String shippingAddressSuccess(Model model){
 
         model.addAttribute("allShippingAddress", shippingAddressService.getAllShippingAddress());
-
+        return "redirect:/payment_input";
+    }
+    @GetMapping(value = {"/shippingAddressList"})
+    public String shippingAddressList(Model model){
+        model.addAttribute("allShippingAddress", shippingAddressService.getAllShippingAddress());
         return "/user/shippingSuccess";
     }
     @GetMapping("/editShipping/{id}")
