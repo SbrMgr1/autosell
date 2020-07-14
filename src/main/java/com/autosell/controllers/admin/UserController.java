@@ -40,6 +40,7 @@ public class UserController {
             User user = userService.findById(id);
 
             SimpleMailMessage mail = new SimpleMailMessage();
+
             mail.setFrom("AutoSell");
             mail.setTo(user.getEmail());
             mail.setSubject("Account Activated");
