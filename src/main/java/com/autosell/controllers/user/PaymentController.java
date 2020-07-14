@@ -33,6 +33,13 @@ public class PaymentController {
     UserService userService;
 
 
+    @Autowired
+    BillingAddressService billingAddressService;
+
+    @Autowired
+    ShippingAddressService shippingAddressService;
+
+
     @GetMapping(value = {"/", ""})
     public String paymentInput(@ModelAttribute("payment") Payment payment) {
 
@@ -47,9 +54,14 @@ public class PaymentController {
             BillingAddress billingAddress = (BillingAddress) session.getAttribute("billingAddress");
             ShippingAddress shippingAddress = (ShippingAddress) session.getAttribute("shippingAddress");
 
+
             if(billingAddress ==null || shippingAddress == null){
                 return "redirect:/";
             }
+
+            billingAddress = billingAddressService.save(billingAddress);
+            shippingAddress = shippingAddressService.save(shippingAddress);
+
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             User user = userService.findByUserName(authentication.getName());
 
@@ -59,6 +71,11 @@ public class PaymentController {
             productOrder.setShippingAddress(shippingAddress);
             productOrder.setOrderStatus(OrderStatusEnum.PENDING);
             productOrder.setBuyer(user);
+
+            //saving billing address
+            //saving shipping address
+
+
 
             //collecting product
             List<OrderdProduct> orderdProducts = new ArrayList<OrderdProduct>();
@@ -70,7 +87,10 @@ public class PaymentController {
                 orderdProduct.setPrice(p.getPrice());
                 orderdProduct.setQty(p.getQty());
                 orderdProduct.setTax(p.getTax());
+                orderdProduct.setProduct(p);
+
                 orderdProducts.add(orderdProduct);
+
             }
 
             productOrder.setProducts(orderdProducts);
