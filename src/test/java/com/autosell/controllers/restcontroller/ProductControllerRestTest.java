@@ -34,11 +34,11 @@ public class ProductControllerRestTest {
     @BeforeEach
     void setup() throws JsonProcessingException {
 //    Product product1,product2,product3,product4,product5;
-        Product product1 = new Product(1l, "Bike", 20.2f, 7.7f, 1, "This is description", "boat.jpg", false, 1l, 0);
-        Product product2 = new Product(2l, "Phone", 203.42f, 7.7f, 1, "This is description", "phone.jpg", false, 2l, 0);
-        Product product3 = new Product(12l, "Laptop", 1420.2f, 7.7f, 1, "This is description", "laptop.jpg", false, 3l, 0);
-        Product product4 = new Product(13l, "Desktop", 40.2f, 7.7f, 1, "This is description", "desktop.jpg", false, 3l, 0);
-        Product product5 = new Product(14l, "Boat", 14.2f, 7.7f, 1, "This is description", "laptop.jpg", false, 4l, 0);
+//        Product product1 = new Product(1l, "Bike", 20.2f, 7.7f, 1, "This is description", "boat.jpg", false, 1l, 0);
+//        Product product2 = new Product(2l, "Phone", 203.42f, 7.7f, 1, "This is description", "phone.jpg", false, 2l, 0);
+//        Product product3 = new Product(12l, "Laptop", 1420.2f, 7.7f, 1, "This is description", "laptop.jpg", false, 3l, 0);
+//        Product product4 = new Product(13l, "Desktop", 40.2f, 7.7f, 1, "This is description", "desktop.jpg", false, 3l, 0);
+//        Product product5 = new Product(14l, "Boat", 14.2f, 7.7f, 1, "This is description", "laptop.jpg", false, 4l, 0);
     }
 
     @Test

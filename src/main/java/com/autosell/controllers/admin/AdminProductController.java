@@ -59,7 +59,7 @@ public class AdminProductController {
 
     @GetMapping(value = {"", "/"})
     public String index(Model model) {
-        model.addAttribute("products", productService.findAll());
+        model.addAttribute("products", productService.findAllByAddedBy(((User)model.getAttribute("seller")).getId()));
         return "admin/product_list";
     }
 
