@@ -92,17 +92,6 @@ public class WebMvcConfigurerInit implements WebMvcConfigurer {
         }
     }
 
-//    @Override
-//    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-//        configurer
-//                .defaultContentType(MediaType.APPLICATION_JSON)
-//                .favorPathExtension(true);
-//    }
-//    @Bean
-//    public ViewResolver pdfViewResolver() {
-//        return new PdfViewResolver();
-//    }
-
 
 
 }
