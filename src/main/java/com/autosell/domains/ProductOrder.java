@@ -18,7 +18,7 @@ public class ProductOrder {
     private String order_status;
     @OneToOne
     @JoinColumn(name="bAddr_id",nullable = false)
-    private BillingAddress bAddress;
+    private BillingAddress billingAddress;
     @JoinColumn(name="sAddr_id",nullable = false)
     @OneToOne
     private ShippingAddress shippingAddress;
@@ -62,12 +62,12 @@ public class ProductOrder {
         this.order_status = order_status;
     }
 
-    public BillingAddress getbAddress() {
-        return bAddress;
+    public BillingAddress getBillingAddress() {
+        return billingAddress;
     }
 
-    public void setbAddress(BillingAddress bAddress) {
-        this.bAddress = bAddress;
+    public void setBillingAddress(BillingAddress billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
     public ShippingAddress getShippingAddress() {

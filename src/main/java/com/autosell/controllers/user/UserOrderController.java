@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -21,30 +22,26 @@ public class UserOrderController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping(value = {"","/"})
-    public String getOrders(Model model){
-        ProductOrder productOrder1= new ProductOrder();
-        productOrderService.save(productOrder1);
-        model.addAttribute("orders",productOrderService.findAll());
+    @RequestMapping(value = {"","/order"})
+    public String getOrders(Model model, HttpSession session){
+       ProductOrder productOrder= (ProductOrder)session.getAttribute("productOrder1");
+       model.addAttribute("productOrder",productOrder);
         return "admin/orderForm";
     }
-    @PostMapping(value = "/save")
-    public String save(@ModelAttribute("productOrder")ProductOrder productOrder,Model model){
-        productOrderService.save(productOrder);
-        model.addAttribute("orders",productOrderService.findAll());
-        return "admin/orderForm";
-    }
-    @GetMapping(value = "/edit/{id}")
-    public String edit(@PathVariable("id")Long id, Model model){
-        ProductOrder order=productOrderService.find(id);
-        model.addAttribute("order",order);
-        return "admin/editOrderForm";
-    }
+//    @PostMapping(value = "/save")
+//    public String save(@ModelAttribute("productOrder")ProductOrder productOrder,Model model){
+//
+//        return "admin/orderForm";
+//    }
+//    @GetMapping(value = "/edit/{id}")
+//    public String edit(@PathVariable("id")Long id, Model model){
+//
+//        return "admin/editOrderForm";
+//    }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id")Long id, Model model){
-        productOrderService.deleteById(id);
-        model.addAttribute("orders",productOrderService.findAll());
+
         return "admin/orderForm";
     }
     @PostMapping(value = "/order")
@@ -54,20 +51,12 @@ public class UserOrderController {
     }
     @GetMapping(value = "/checkout")
     public String orderForm(Model model){
-        Product product =productService.findById(1).get();
-        List<Product> products= Arrays.asList(product);
-        model.addAttribute("products",products);
-        ProductOrder productOrder=new ProductOrder();
-        model.addAttribute("order",productOrder);
+
         return "user/orderForm";
     }
     @GetMapping(value = "/edit")
     public String editOrder(Model model){
-        Product product2 =productService.findById(1).get();
-        List<Product> products= Arrays.asList(product2);
-        model.addAttribute("products",products);
-        ProductOrder productOrder=new ProductOrder();
-        model.addAttribute("order",productOrder);
+
         return "user/orderForm";
     }
 }

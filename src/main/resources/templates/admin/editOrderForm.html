@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-lg-12">
             Edit Content Form
-            <form method="post" th:action="@{/admin/account/save}" th:object="${order}">
+            <form method="post" th:action="@{/admin/account/save}" th:object="${productOrder}">
                 <div class="form-group">
                     <label for="order-status">Order Status</label>
                     <input th:filed="*{order_status}" class="form-control" id="order-status" th:value="*{order_status}" th:name="order-status">
