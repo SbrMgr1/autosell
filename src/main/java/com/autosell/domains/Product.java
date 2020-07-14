@@ -131,4 +131,17 @@ public class Product implements Serializable {
     public void setQty(Integer qty) {
         this.qty = qty;
     }
+
+    public Product(Long id, @NotBlank @Size(min = 4, max = 50, message = "{Size.name.validation}") String name, @NotNull @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/) Float price, @NotNull @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/) Float tax, @NotNull Integer catId, @Size(max = 65535) String description, String productImage, boolean soldStatus, Long addedBy, Integer qty) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.tax = tax;
+        this.catId = catId;
+        this.description = description;
+        this.productImage = productImage;
+        this.soldStatus = soldStatus;
+        this.addedBy = addedBy;
+        this.qty = qty;
+    }
 }

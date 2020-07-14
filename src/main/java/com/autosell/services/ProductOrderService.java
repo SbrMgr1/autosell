@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductOrderService {
+
+    public List<ProductOrder> getAll();
+
     public ProductOrder save(ProductOrder productOrder);
-    public List<ProductOrder> findAll();
+
+    public ProductOrder get(Long id);
     public void deleteById(Long id);
-    public ProductOrder find(long id);
 }

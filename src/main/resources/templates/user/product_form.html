@@ -17,7 +17,7 @@
 <!--                            <button class="btn btn-success add-edit-btn" href="#demo" data-toggle="collapse">Add/Edit</button>-->
 <!--                            <div id="demo" class="collapse">-->
                                 <div id="demo">
-                                <form  class="product-form" th:object="${product}" method="post" action="#" enctype="multipart/form-data">
+                                <form  class="product-form" th:action="@{/seller/product-list/add}" th:object="${product}" method="post" action="#" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">

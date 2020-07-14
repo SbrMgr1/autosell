@@ -22,20 +22,23 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-
+<<<<<<< HEAD
         <a th:href="@{/admin/account}">Go to Order Form</a><br>
             <a th:href="@{/admin/account/history}">Order History</a>
+=======
 
-
+>>>>>>> 1105ac6e63fbd9f5749b7fb8247b2e83bf5c5456
             <table class="table table-hover">
 
                 <thead>
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Slug</th>
-
+<<<<<<< HEAD
+                    <th scope="col">Action</a></th>
+=======
                     <th scope="col">Action </th>
-
+>>>>>>> 1105ac6e63fbd9f5749b7fb8247b2e83bf5c5456
 
                 </tr>
                 </thead>
@@ -44,10 +47,13 @@
                     <th scope="row" th:text="${content.name}">Name</th>
                     <td th:text="${content.slug}">Slug</td>
                     <td>
-<
-
+<<<<<<< HEAD
+                        <a class="btn btn btn-primary" th:href="@{/administration/cms-managent/edit/{id}(id = ${content.slug})}"> Edit</a>
+                        <a class="btn btn btn-danger" th:href="@{/administration/cms-managent/delete/{id}(id = ${content.slug})}">Delete</a>
+=======
                         <a th:href="@{/administration/cms-managent/edit/{id}(id = ${content.slug})}"><i class="fa fa-edit"></i></a>
                         <a th:href="@{/administration/cms-managent/delete/{id}(id = ${content.slug})}"><i class="fa fa-trash-o"></i></a>
+>>>>>>> 1105ac6e63fbd9f5749b7fb8247b2e83bf5c5456
 
                     </td>
                 </tr>
