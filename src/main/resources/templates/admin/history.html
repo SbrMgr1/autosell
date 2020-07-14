@@ -27,8 +27,10 @@
             <th scope="row" th:text="${order.id}"></th>
             <td th:text="${order.orderStatus}"></td>
 
-            <td th:each="pro:${order.products}">
+            <td th:each="pro:${order.orderdProducts}">
                 <p th:text="${pro.id}"></p>
+                <p th:text="${pro.price}"></p>
+                <p th:text="${pro.qty}"></p>
             </td>
             <td th:text="${order.shippingAddress.city}"></td>
             <td th:text="${order.billingAddress.state}"></td>
