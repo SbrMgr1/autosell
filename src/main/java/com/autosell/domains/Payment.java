@@ -1,6 +1,7 @@
 package com.autosell.domains;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,33 +9,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 @Entity
 public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    private Long id;
     @NotBlank
     private String paymentType;
     @NotBlank
     private String cardName;
-    @NotBlank
-    private long cardNumber;
-    @NotBlank
+    @NotNull
+    private Long cardNumber;
+
+    @NotNull
+    @DateTimeFormat(pattern = "MM/YY")
     private Date cardExpiry;
-    @NotBlank
+
+    @NotNull
     @Digits(integer = 3, fraction =0)
-    private int CVV;
+    private Integer CVV;
 
     public Payment() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,11 +60,11 @@ public class Payment {
         this.cardName = cardName;
     }
 
-    public long getCardNumber() {
+    public Long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(long cardNumber) {
+    public void setCardNumber(Long cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -70,11 +76,11 @@ public class Payment {
         this.cardExpiry = cardExpiry;
     }
 
-    public int getCVV() {
+    public Integer getCVV() {
         return CVV;
     }
 
-    public void setCVV(int CVV) {
+    public void setCVV(Integer CVV) {
         this.CVV = CVV;
     }
 }

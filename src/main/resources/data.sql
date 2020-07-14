@@ -30,7 +30,7 @@ insert into product (id,name,price, tax, cat_id, description, product_image, add
 insert into product (id,name,price, tax, cat_id, description, product_image, added_by,sold_status) values (1,'Macbook Pro 16',2500.8,10,1,'<h3>Features:</h3>\nPrice. $1299. ...\n Finish. Silver Space Gray.\n Display. Retina display. ...\n Processor. 1.4GHz quad‑core 8th‑generation Intel Core i5, Turbo Boost up to 3.9GHz, with 128MB of eDRAM. ...\n Storage1 256GB. ...\n Memory. 8GB. ...\n Graphics. Intel Iris Plus Graphics 645.Charging and Expansion','macbook-pro.jpg',2,false);
 
 -- CMS
-insert into content(slug,content,name) values('privacy-policy','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Privacy Policy');
-insert into content(slug,content,name) values('terms-and-conditions','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Terms and Condition');
-insert into content(slug,content,name) values('about-us','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','About');
-insert into content(slug,content,name) values('faq','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','FAQ');
+-- insert into content(slug,content,name) values('privacy-policy','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Privacy Policy');
+-- insert into content(slug,content,name) values('terms-and-conditions','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','Terms and Condition');
+-- insert into content(slug,content,name) values('about-us','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','About');
+-- insert into content(slug,content,name) values('faq','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod','FAQ');
