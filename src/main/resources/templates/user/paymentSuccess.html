@@ -41,8 +41,6 @@
                     <td th:text="${pay.cardNumber}"></td>
                     <td th:text="${pay.cardExpiry}"></td>
                     <td th:text="${pay.CVV}"></td>
-                    <td><a th:href="@{/editPayment/{id}(id=${pay.id})}">UseThis</a></td>
-                    <td><a th:href="@{/editPayment/{id}(id=${pay.id})}">Update</a></td>
                     <td><a th:href="@{/deletePayment/{id}(id=${pay.id})}">Delete</a></td>
                 </tr>
             </tbody>

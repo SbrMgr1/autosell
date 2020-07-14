@@ -16,16 +16,22 @@
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
+        <div class="col-lg-12 form-group">
+            <a class="btn btn-success" th:href="@{/administration/cms-managent/add}">Add a Product Category</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
-        <a th:href="@{/admin/account}">Go to Order Form</a><br>
-            <a th:href="@{/admin/account/history}">Order History</a>
+          
             <table class="table table-hover">
 
                 <thead>
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Slug</th>
-                    <th scope="col">Action</a></th>
+
+                    <th scope="col">Action </th>
+
 
                 </tr>
                 </thead>
@@ -36,6 +42,7 @@
                     <td>
                         <a class="btn btn btn-primary" th:href="@{/administration/cms-managent/edit/{id}(id = ${content.slug})}"> Edit</a>
                         <a class="btn btn btn-danger" th:href="@{/administration/cms-managent/delete/{id}(id = ${content.slug})}">Delete</a>
+
 
                     </td>
                 </tr>

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@Controller
+
 public class staticPagesController {
 //    @GetMapping(value = "/page/about-us")
 //    public String contactUs(){

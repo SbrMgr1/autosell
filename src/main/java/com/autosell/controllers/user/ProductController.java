@@ -4,10 +4,8 @@ import com.autosell.domains.Product;
 import com.autosell.domains.User;
 import com.autosell.helpers.MyHelper;
 import com.autosell.services.CategoryService;
-import com.autosell.services.FilesStorageService;
 import com.autosell.services.ProductService;
 import com.autosell.services.UserService;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -25,13 +23,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.http.HttpRequest;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -111,7 +102,7 @@ public class ProductController {
 
             productService.save(product);
             redirectAttributes.addFlashAttribute("success_msg", "Product has been created successfully.");
-            return "redirect:/account/product-list";
+            return "redirect:/seller/product-list";
         }
 
 
@@ -154,7 +145,7 @@ public class ProductController {
             product.setId(id);
             productService.save(product);
 
-            return ("redirect:/account/product-list");
+            return ("redirect:/seller/product-list");
         }
 
     }
@@ -176,7 +167,7 @@ public class ProductController {
         }
 
         //pending to check order table
-        return ("redirect:/account/product-list");
+        return ("redirect:/seller/product-list");
     }
 
 }
