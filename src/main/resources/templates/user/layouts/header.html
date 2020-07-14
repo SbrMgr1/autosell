@@ -78,6 +78,8 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <li sec:authorize="hasRole('ROLE_SELLER')"><a href="#" th:href="@{/seller/followers}">Follower List</a></li>
+                                    <li sec:authorize="hasRole('ROLE_BUYER')"><a href="#" th:href="@{/buyer/followers}">Following List</a></li>
                                     <li sec:authorize="hasRole('ROLE_SELLER')"><a href="#" th:href="@{/seller/account/order-list}">Order List</a></li>
                                     <li sec:authorize="hasRole('ROLE_SELLER')"><a href="#" th:href="@{/seller/product-list}" >Product List</a></li>
                                     <li sec:authorize="hasRole('ROLE_BUYER')"><a href="#" th:href="@{/buyer/account/order-history}">Order History</a></li>
