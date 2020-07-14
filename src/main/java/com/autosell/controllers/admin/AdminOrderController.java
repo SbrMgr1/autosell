@@ -3,9 +3,11 @@ package com.autosell.controllers.admin;
 
 import com.autosell.configs.OrderStatusEnum;
 import com.autosell.domains.ProductOrder;
+import com.autosell.domains.User;
 import com.autosell.services.ProductOrderService;
 import com.autosell.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
-@RequestMapping({"/admin/account","/seller/account"})
+@RequestMapping({"/admin/account","/seller/account","/buyer/account"})
 @Controller
 public class AdminOrderController {
     @Autowired
@@ -28,6 +30,13 @@ public class AdminOrderController {
         List<ProductOrder> productOrders= productOrderService.getAll();
         model.addAttribute("productOrders",productOrders);
         return "user/orderForm";
+    }
+
+    @RequestMapping(value = {"/order-history"})
+    public String getOrderHistory(Model model){
+        List<ProductOrder> productOrders= productOrderService.getAll();
+        model.addAttribute("productOrders",productOrders);
+        return "user/orderHistory";
     }
     @RequestMapping(value = {"","/"})
     public String getOrders(Model model){
