@@ -45,7 +45,7 @@
                             <td>
                                 <input class="form-control qty-input" type="number" min="1" th:value="${product.qty}">
                             </td>
-                            <td class="total-price" th:value="${product.qty*product.price}">
+                            <td class="total-price" th:text="${product.qty*product.price}">
                                 USD
                             </td>
 

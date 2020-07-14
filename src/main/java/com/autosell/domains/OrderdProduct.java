@@ -17,9 +17,11 @@ public class OrderdProduct implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @NotNull
     @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
     Float price;
+
     @NotNull
     @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
     Float tax;

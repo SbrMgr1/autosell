@@ -19,6 +19,7 @@ public class Content implements Serializable {
     @Id
     @NotNull
     private String slug;
+
     @NotBlank
     private String name;
     private String cont;
