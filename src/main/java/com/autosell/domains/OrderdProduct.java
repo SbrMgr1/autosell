@@ -1,10 +1,8 @@
 package com.autosell.domains;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
+@Transactional
 public class OrderdProduct implements Serializable {
 
     @Id
@@ -27,6 +26,11 @@ public class OrderdProduct implements Serializable {
     Float tax;
 
     private Integer qty;
+
+    @OneToOne
+    @JoinColumn(name="product_id",nullable = false)
+    private Product product;
+
     public OrderdProduct() {
 
     }
@@ -38,8 +42,6 @@ public class OrderdProduct implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public Float getPrice() {
         return price;
@@ -57,12 +59,19 @@ public class OrderdProduct implements Serializable {
         this.tax = tax;
     }
 
-
     public Integer getQty() {
         return qty;
     }
 
     public void setQty(Integer qty) {
         this.qty = qty;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
