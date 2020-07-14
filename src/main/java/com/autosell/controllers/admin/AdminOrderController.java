@@ -54,4 +54,14 @@ public class AdminOrderController {
         model.addAttribute("productOrders",productOrders);
         return "admin/history";
     }
+    @RequestMapping(value = {"/user/delete/{id}"})
+    public String deleteFromUser(@PathVariable("id")Long id, Model model){
+        ProductOrder productOrder=productOrderService.get(id);
+        if(!(productOrder.getOrder_status().equals("On the way")||productOrder.getOrder_status().equals("Delivered"))){
+            productOrderService.deleteById(id);
+        }
+        List<ProductOrder> productOrders= productOrderService.getAll();
+        model.addAttribute("productOrders",productOrders);
+        return "admin/history";
+    }
 }
