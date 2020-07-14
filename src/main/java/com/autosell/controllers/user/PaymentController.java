@@ -83,22 +83,22 @@ public class PaymentController {
 
 
             //collecting product
-            List<OrderdProduct> orderdProducts = new ArrayList<OrderdProduct>();
+            List<OrderedProduct> orderedProducts = new ArrayList<OrderedProduct>();
             List<Long> ids = new ArrayList<Long>();
             Map<Long,Product> products = (HashMap<Long,Product>)session.getAttribute("cart_item");
             for(Map.Entry<Long, Product> entry : products.entrySet()) {
                 Long key = entry.getKey();
                 Product p = entry.getValue();
-                OrderdProduct orderdProduct = new OrderdProduct();
-                orderdProduct.setPrice(p.getPrice());
-                orderdProduct.setQty(p.getQty());
-                orderdProduct.setTax(p.getTax());
-                orderdProduct.setProduct(p);
-                orderdProducts.add(orderdProduct);
+                OrderedProduct orderedProduct = new OrderedProduct();
+                orderedProduct.setPrice(p.getPrice());
+                orderedProduct.setQty(p.getQty());
+                orderedProduct.setTax(p.getTax());
+                orderedProduct.setProduct(p);
+                orderedProducts.add(orderedProduct);
                 ids.add(p.getId());
             }
 
-            productOrder.setOrderdProducts(orderdProducts);
+            productOrder.setOrderedProducts(orderedProducts);
             productOrderService.save(productOrder);
 
             try {
