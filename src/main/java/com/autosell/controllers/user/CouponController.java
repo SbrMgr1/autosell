@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class couponController {
+public class CouponController {
 
     @GetMapping(value = "/coupon")
     public String viewCoupon(@ModelAttribute("couponDets") Coupon coupon, Model model){

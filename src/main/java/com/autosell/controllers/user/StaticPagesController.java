@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
-public class staticPagesController {
+public class StaticPagesController {
 //    @GetMapping(value = "/page/about-us")
 //    public String contactUs(){
 //        return "user/aboutUs";
