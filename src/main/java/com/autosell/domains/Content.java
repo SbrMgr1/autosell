@@ -1,6 +1,11 @@
 package com.autosell.domains;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 @Entity
 @Table(name = "Content")
@@ -8,12 +13,15 @@ public class Content implements Serializable {
 
     private static final long serialVersionUID = 3678107792576131001L;
 
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
+
+    //@UniqueSlug
+
     @Id
+    @NotNull
     private String slug;
+    @NotBlank
     private String name;
-    private String content;
+    private String cont;
 
     public Content() {
     }
@@ -26,10 +34,10 @@ public class Content implements Serializable {
 //        this.id = id;
 //    }
 
-    public Content(String slug,String name, String content){
+    public Content(String slug,String name, String cont){
         this.slug = slug;
         this.name=name;
-        this.content =content;
+        this.cont =cont;
     }
 
     public String getSlug() {
@@ -40,8 +48,8 @@ public class Content implements Serializable {
         return name;
     }
 
-    public String getContent() {
-        return content;
+    public String getCont() {
+        return cont;
     }
 
     public void setSlug(String slug) {
@@ -52,7 +60,7 @@ public class Content implements Serializable {
         this.name = name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCont(String content) {
+        this.cont = content;
     }
 }
