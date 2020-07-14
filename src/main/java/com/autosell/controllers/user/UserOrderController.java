@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+
 
 @RequestMapping("/buyer/account")
 @Controller
@@ -28,16 +26,6 @@ public class UserOrderController {
        model.addAttribute("productOrder",productOrder);
         return "admin/orderForm";
     }
-//    @PostMapping(value = "/save")
-//    public String save(@ModelAttribute("productOrder")ProductOrder productOrder,Model model){
-//
-//        return "admin/orderForm";
-//    }
-//    @GetMapping(value = "/edit/{id}")
-//    public String edit(@PathVariable("id")Long id, Model model){
-//
-//        return "admin/editOrderForm";
-//    }
 
     @GetMapping(value = "/delete/{id}")
     public String delete(@PathVariable("id")Long id, Model model){
