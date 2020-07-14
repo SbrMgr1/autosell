@@ -93,7 +93,7 @@ public class PaymentController {
 
             }
 
-            productOrder.setProducts(orderdProducts);
+            productOrder.setOrderdProducts(orderdProducts);
             productOrderService.save(productOrder);
 
             paymentService.save(payment);
