@@ -11,10 +11,7 @@ import java.io.Serializable;
 @Table(name = "Content")
 public class Content implements Serializable {
 
-    private static final long serialVersionUID = 3678107792576131001L;
-
-
-    //@UniqueSlug
+    //private static final long serialVersionUID = 3678107792576131001L;
 
     @Id
     @NotNull
@@ -27,13 +24,6 @@ public class Content implements Serializable {
     public Content() {
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
     public Content(String slug,String name, String cont){
         this.slug = slug;
@@ -45,23 +35,23 @@ public class Content implements Serializable {
         return slug;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCont() {
-        return cont;
-    }
-
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setCont(String content) {
-        this.cont = content;
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
     }
 }

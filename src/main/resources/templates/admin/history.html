@@ -25,15 +25,14 @@
         <tbody>
         <tr th:each="order:${productOrders}">
             <th scope="row" th:text="${order.id}"></th>
-            <td th:text="${order.order_status}"></td>
+            <td th:text="${order.orderStatus}"></td>
+            <td th:text="${order.products.pr}"></td>
 
             <td th:each="pro:${order.products}">
-                <span th:text="${pro.id}"></span>
-                <span th:text="${pro.qty}"></span>
-                <span th:text="${pro.price}"></span>
+                <p th:text="${pro.id}"></p>
             </td>
-            <td th:text="${order.shippingAddress}"></td>
-            <td th:text="${order.billingAddress}"></td>
+            <td th:text="${order.shippingAddress.city}"></td>
+            <td th:text="${order.billingAddress.state}"></td>
             <td th:text="${order.buyer.firstName}"></td>
 
         </tr>

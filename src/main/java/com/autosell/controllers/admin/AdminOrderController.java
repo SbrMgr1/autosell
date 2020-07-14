@@ -30,13 +30,9 @@ public class AdminOrderController {
         return "admin/orderForm";
     }
     @PostMapping(value = "/save")
-<<<<<<< HEAD
-    public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status")String stat,@RequestParam("id")Long id, Model model,HttpSession session){
-        productOrderService.get(id).setOrderStatus(OrderStatusEnum.valueOf("stat"));
-=======
+
     public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status") OrderStatusEnum stat, @RequestParam("id")Long id, Model model, HttpSession session){
         productOrderService.get(id).setOrderStatus(stat);
->>>>>>> 364f58a393d6faa7dcacd145563e4512d7d7e4ba
         model.addAttribute("productOrders",productOrderService.getAll());
         ProductOrder productOrder1 = productOrderService.get(id);
         session.setAttribute("productOrder1",productOrder1);
