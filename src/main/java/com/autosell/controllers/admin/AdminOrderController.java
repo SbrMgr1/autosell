@@ -1,6 +1,7 @@
 package com.autosell.controllers.admin;
 
 
+import com.autosell.configs.OrderStatusEnum;
 import com.autosell.domains.ProductOrder;
 import com.autosell.services.ProductOrderService;
 import com.autosell.services.ProductService;
@@ -29,8 +30,8 @@ public class AdminOrderController {
         return "admin/orderForm";
     }
     @PostMapping(value = "/save")
-    public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status")String stat,@RequestParam("id")Long id, Model model,HttpSession session){
-        productOrderService.get(id).setOrder_status(stat);
+    public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status") OrderStatusEnum stat, @RequestParam("id")Long id, Model model, HttpSession session){
+        productOrderService.get(id).setOrderStatus(stat);
         model.addAttribute("productOrders",productOrderService.getAll());
         ProductOrder productOrder1 = productOrderService.get(id);
         session.setAttribute("productOrder1",productOrder1);
