@@ -1,6 +1,7 @@
 package com.autosell.controllers.admin;
 
 
+import com.autosell.configs.OrderStatusEnum;
 import com.autosell.domains.ProductOrder;
 import com.autosell.services.ProductOrderService;
 import com.autosell.services.ProductService;
@@ -30,7 +31,7 @@ public class AdminOrderController {
     }
     @PostMapping(value = "/save")
     public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status")String stat,@RequestParam("id")Long id, Model model,HttpSession session){
-        productOrderService.get(id).setOrder_status(stat);
+        productOrderService.get(id).setOrderStatus(OrderStatusEnum.valueOf("stat"));
         model.addAttribute("productOrders",productOrderService.getAll());
         ProductOrder productOrder1 = productOrderService.get(id);
         session.setAttribute("productOrder1",productOrder1);
@@ -57,7 +58,7 @@ public class AdminOrderController {
     @RequestMapping(value = {"/user/delete/{id}"})
     public String deleteFromUser(@PathVariable("id")Long id, Model model){
         ProductOrder productOrder=productOrderService.get(id);
-        if(!(productOrder.getOrder_status().equals("On the way")||productOrder.getOrder_status().equals("Delivered"))){
+        if(!(productOrder.getOrderStatus().equals("On the way")||productOrder.getOrderStatus().equals("Delivered"))){
             productOrderService.deleteById(id);
         }
         List<ProductOrder> productOrders= productOrderService.getAll();
