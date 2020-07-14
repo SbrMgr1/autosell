@@ -2,7 +2,7 @@ $(function () {
 
     var updateCart = function (key, qty) {
 
-        $(`.item-container[data-key="${key}"]`).addClass('added');
+
         $(`.item-container[data-key="${key}"] .check-icon`).addClass('fa fa-spinner fa-spin');
         $.ajax({
             url: "/buyer/add-to-cart",
@@ -10,12 +10,25 @@ $(function () {
             data: {
                 id: key,
                 qty: qty
-            }
-        }).done(function (resp) {
+            },
+            error:  function (jqXHR, timeout, message) {
+                $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').removeClass('fa-spinner fa-spin');
+                if(jqXHR.status == 403){
+                    alert("Seller Can not buy product.");
+                }
 
-            $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').removeClass('fa-spinner fa-spin');
-            $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').addClass('fa-check');
-            $('.item-count').text(resp)
+            }
+
+        }).done(function (resp) {
+            if(typeof (resp) == 'number'){
+                $(`.item-container[data-key="${key}"]`).addClass('added');
+                $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').removeClass('fa-spinner fa-spin');
+                $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').addClass('fa-check');
+                $('.item-count').text(resp)
+            }else{
+                window.location.href = "/signin?error_msg=Please Login as buyer.";
+            }
+
         });
     }
 

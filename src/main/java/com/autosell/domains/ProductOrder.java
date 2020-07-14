@@ -29,7 +29,7 @@ public class ProductOrder {
     @OneToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "productOrder_id")
-    private List<OrderdProduct> orderdProducts;
+    private List<OrderedProduct> orderedProducts;
 
     public ProductOrder() {
     }
@@ -82,11 +82,11 @@ public class ProductOrder {
         this.shippingAddress = shippingAddress;
     }
 
-    public List<OrderdProduct> getOrderdProducts() {
-        return orderdProducts;
+    public List<OrderedProduct> getOrderedProducts() {
+        return orderedProducts;
     }
 
-    public void setOrderdProducts(List<OrderdProduct> orderdProducts) {
-        this.orderdProducts = orderdProducts;
+    public void setOrderedProducts(List<OrderedProduct> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
 }

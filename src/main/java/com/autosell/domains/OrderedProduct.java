@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Transactional
-public class OrderdProduct implements Serializable {
+public class OrderedProduct implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class OrderdProduct implements Serializable {
 
 
 
-    public OrderdProduct() {
+    public OrderedProduct() {
 
     }
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
-@RequestMapping("/admin/account")
+@RequestMapping({"/admin/account","/seller/account"})
 @Controller
 public class AdminOrderController {
     @Autowired
@@ -23,6 +23,12 @@ public class AdminOrderController {
     @Autowired
     ProductService productService;
 
+    @RequestMapping(value = {"order-list"})
+    public String getSellerOrders(Model model){
+        List<ProductOrder> productOrders= productOrderService.getAll();
+        model.addAttribute("productOrders",productOrders);
+        return "user/orderForm";
+    }
     @RequestMapping(value = {"","/"})
     public String getOrders(Model model){
        List<ProductOrder> productOrders= productOrderService.getAll();
@@ -31,8 +37,10 @@ public class AdminOrderController {
     }
     @PostMapping(value = "/save")
 
-    public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status") OrderStatusEnum stat, @RequestParam("id")Long id, Model model, HttpSession session){
-        productOrderService.get(id).setOrderStatus(stat);
+    public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status") String stat, @RequestParam("id")Long id, Model model, HttpSession session){
+        productOrderService.get(id).setOrderStatus(OrderStatusEnum.valueOf(stat));
+
+        productOrderService.save(productOrderService.get(id));
         model.addAttribute("productOrders",productOrderService.getAll());
         ProductOrder productOrder1 = productOrderService.get(id);
         session.setAttribute("productOrder1",productOrder1);

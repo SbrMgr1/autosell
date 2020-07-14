@@ -15,11 +15,9 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Status</th>
-            <th scope="col">Price</a></th>
             <th scope="col">Products</th>
             <th scope="col">Shipping Address</th>
             <th scope="col">Billing Address</th>
-            <th scope="col">User</th>
         </tr>
         </thead>
         <tbody>
@@ -27,13 +25,13 @@
             <th scope="row" th:text="${order.id}"></th>
             <td th:text="${order.orderStatus}"></td>
 
-            <td th:each="pro:${order.products}">
-                <p th:text="${pro.id}"></p>
+            <td th:each="pro:${order.orderedProducts}">
+                ProductID:-<p th:text="${pro.id}"></p>
+                ProductPrice:-<p th:text="${pro.price}"></p>
+                ProductQty-<p th:text="${pro.qty}"></p>
             </td>
             <td th:text="${order.shippingAddress.city}"></td>
             <td th:text="${order.billingAddress.state}"></td>
-            <td th:text="${order.buyer.firstName}"></td>
-
         </tr>
         </tbody>
     </table>
