@@ -1,5 +1,6 @@
 package com.autosell.domains;
 
+import com.autosell.configs.OrderStatusEnum;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -11,11 +12,13 @@ public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long transaction_id;
+    private Long transactionId;
+
     @OneToOne
     @JoinColumn(name="buyer_id",nullable = false)
     private User buyer;
-    private String order_status;
+
+    private OrderStatusEnum orderStatus;
     @OneToOne
     @JoinColumn(name="bAddr_id",nullable = false)
     private BillingAddress billingAddress;
@@ -38,12 +41,12 @@ public class ProductOrder {
         this.id = id;
     }
 
-    public Long getTransaction_id() {
-        return transaction_id;
+    public Long getTransactionId() {
+        return transactionId;
     }
 
-    public void setTransaction_id(Long transaction_id) {
-        this.transaction_id = transaction_id;
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public User getBuyer() {
@@ -54,12 +57,12 @@ public class ProductOrder {
         this.buyer = buyer;
     }
 
-    public String getOrder_status() {
-        return order_status;
+    public OrderStatusEnum getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setOrder_status(String order_status) {
-        this.order_status = order_status;
+    public void setOrderStatus(OrderStatusEnum orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public BillingAddress getBillingAddress() {
