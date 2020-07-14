@@ -37,10 +37,9 @@ public class UserController {
     public @ResponseBody
     boolean acceptUser(@PathVariable("id") long id) {
         try {
-            SimpleMailMessage mail = new SimpleMailMessage();
-
             User user = userService.findById(id);
 
+            SimpleMailMessage mail = new SimpleMailMessage();
             mail.setFrom("AutoSell");
             mail.setTo(user.getEmail());
             mail.setSubject("Account Activated");
@@ -51,6 +50,9 @@ public class UserController {
             stringBuffer.append("\n");
             stringBuffer.append("Your account is activated in AutoSell.\n");
             stringBuffer.append("Now you can login with your username and password.");
+            stringBuffer.append("\nThank you.\n");
+            stringBuffer.append("AutoSell Team");
+
             mail.setText(stringBuffer.toString());
             javaMailSender.send(mail);
 
@@ -80,6 +82,8 @@ public class UserController {
             stringBuffer.append("\n");
             stringBuffer.append("Your account is deactivated in AutoSell.\n");
             stringBuffer.append("If you want to know reason. You can contact with admin.");
+            stringBuffer.append("\nThank you.\n");
+            stringBuffer.append("AutoSell Team");
             mail.setText(stringBuffer.toString());
             javaMailSender.send(mail);
 
