@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -26,23 +27,23 @@ public class ShippingAddressController {
     BillingAddressService billingAddressService;
 
     @GetMapping(value = {"/",""})
-    public String shippingAddressForm(@ModelAttribute("shippingAddress") ShippingAddress shippingAddress){
+    public String shippingAddressForm(@ModelAttribute("shippingAddress") ShippingAddress shippingAddress, HttpSession session, RedirectAttributes redirectAttributes){
+        if(session.getAttribute("cart_item") == null){
+            redirectAttributes.addFlashAttribute("error_msg","Cart is empty.");
+            return "redirect:/buyer/cart-details";
+        }
         return "user/shippingForm";
     }
     @PostMapping(value = {"/",""})
     public String saveShippingAddress(@Valid  @ModelAttribute("shippingAddress") ShippingAddress shippingAddress,BindingResult result,HttpSession session, Model model){
         if(result.hasErrors()){
             return "user/shippingForm";
+        }else if(session.getAttribute("billingAddress")==null){
+            return "redirect:/buyer/address";
         }else{
+            session.setAttribute("shippingAddress", shippingAddress);
 
-            BillingAddress billingAddress = (BillingAddress) session.getAttribute("billingAddress");
-            billingAddressService.save(billingAddress);
-            shippingAddressService.save(shippingAddress);
-
-            session.setAttribute("billingAddress",null);
             model.addAttribute("shippingAddress", shippingAddress);
-
-
 
             return "redirect:/buyer/address/shipping/checkout-success";
         }
@@ -55,7 +56,7 @@ public class ShippingAddressController {
     public String shippingAddressSuccess(Model model){
 
         model.addAttribute("allShippingAddress", shippingAddressService.getAllShippingAddress());
-        return "redirect:/payment_input";
+        return "redirect:/buyer/payment_input";
     }
     @GetMapping(value = {"/shippingAddressList"})
     public String shippingAddressList(Model model){

@@ -24,7 +24,11 @@ public class BillingAddressController {
     UserService userService;
     User user;
     @GetMapping(value = {"/",""})
-    public String billingAddressForm(@ModelAttribute("billingAddress") BillingAddress billingAddr){
+    public String billingAddressForm(@ModelAttribute("billingAddress") BillingAddress billingAddr,HttpSession session,RedirectAttributes redirectAttributes){
+        if(session.getAttribute("cart_item") == null){
+            redirectAttributes.addFlashAttribute("error_msg","Cart is empty.");
+            return "redirect:/buyer/cart-details";
+        }
         return "user/billingForm";
     }
     @PostMapping(value = {"/",""})
