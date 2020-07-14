@@ -1,6 +1,5 @@
 package com.autosell.controllers.user;
 
-import com.autosell.domains.Product;
 import com.autosell.domains.ProductOrder;
 import com.autosell.services.ProductOrderService;
 import com.autosell.services.ProductService;
@@ -35,7 +34,7 @@ public class UserOrderController {
     @PostMapping(value = "/order")
     public String order(@ModelAttribute("order")ProductOrder order,Model model){
 
-        return "user/orderSuccess";
+        return "orderHistory";
     }
     @GetMapping(value = "/checkout")
     public String orderForm(Model model){
