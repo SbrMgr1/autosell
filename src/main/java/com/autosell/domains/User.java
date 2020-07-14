@@ -48,6 +48,8 @@ public class User implements Serializable {
 
     private Short userStatus = 0;
 
+    private Long points = 0l;
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Authority> authorities;
 
@@ -159,5 +161,17 @@ public class User implements Serializable {
 
     public void setBillingAddress(List<BillingAddress> billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 }

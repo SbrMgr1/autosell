@@ -80,7 +80,7 @@ public class PaymentController {
 
             //message is remaining
 
-
+            Long points = 5l;
 
             //collecting product
             List<OrderedProduct> orderedProducts = new ArrayList<OrderedProduct>();
@@ -112,7 +112,8 @@ public class PaymentController {
                 stringBuffer.append(",");
                 stringBuffer.append("\n");
                 stringBuffer.append("You placed order in AutoSell successfully.\n");
-                stringBuffer.append("We are very happy by choosing AutoSell.");
+                stringBuffer.append("We are very happy for choosing AutoSell.");
+                stringBuffer.append("Your transaction Id is:"+productOrder.getTransactionId());
                 stringBuffer.append("\nThank you.\n");
                 stringBuffer.append("AutoSell Team");
                 mail.setText(stringBuffer.toString());
@@ -122,8 +123,13 @@ public class PaymentController {
             } catch (NullPointerException e) {
 
             }
+
+            userService.addPointsById(user.getId(),points);//adding 5 points to
+
+            session.setAttribute("user_points",user.getPoints()+points);
+
             session.setAttribute("cart_item",null);
-//            productService.updateSoldStatusByIds(ids);
+
             paymentService.save(payment);
             redirectAttributes.addFlashAttribute(payment);
             return "redirect:/buyer/payment_input/payment-success";
