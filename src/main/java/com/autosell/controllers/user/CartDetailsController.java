@@ -16,15 +16,16 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
-public class CartDetails {
+public class CartDetailsController {
 
     @GetMapping("/buyer/cart-details")
     public String cartDetails(HttpSession session, Model model, HttpServletRequest request) {
         HashMap<Long, Product> cartItems = (HashMap<Long, Product>) session.getAttribute("cart_item");
-        System.out.println("---------------------------------------"+cartItems.size()+"------------------------------");
+
         if (cartItems == null) {
             cartItems = new HashMap<Long, Product>();
         }
+        System.out.println("---------------------------------------"+cartItems.size()+"------------------------------");
         List<Product> products = cartItems.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
         double grand_total = products.stream().mapToDouble((pro) -> pro.getQty() * pro.getPrice()).sum();
         NumberFormat formatter = new DecimalFormat("#0.00");
