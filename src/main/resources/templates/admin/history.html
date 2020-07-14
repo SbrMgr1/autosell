@@ -20,7 +20,6 @@
             <th scope="col">Shipping Address</th>
             <th scope="col">Billing Address</th>
             <th scope="col">User</th>
-            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -36,10 +35,7 @@
             <td th:text="${order.shippingAddress}"></td>
             <td th:text="${order.billingAddress}"></td>
             <td th:text="${order.buyer.firstName}"></td>
-            <td>
-                <a class="btn btn btn-primary" th:href="@{/admin/account/edit/{id}(id = ${order.id})}"> Edit</a>
-                <a class="btn btn btn-danger" th:href="@{/admin/account/delete/{id}(id = ${order.id})}">Delete</a>
-            </td>
+
         </tr>
         </tbody>
     </table>
