@@ -18,23 +18,28 @@ public class ProductControllerRest {
     @GetMapping("/get-all-products")
     public List<Product> getAllProducts()
     {
-        return productService.findAll();
+        List<Product> products=productService.findAll();
+        return products;
     }
     @GetMapping("/{id}")
     public Optional<Product> getById(@PathVariable("id") Long id)
     {
-        return productService.findById(id);
+        Optional<Product> product=productService.findById(id);
+        return product;
     }
 
     @PostMapping("/add-products")
     public Product addProduct(@RequestBody Product product)
     {
-        return productService.save(product);
+        Product product1= productService.save(product);
+        return product1;
     }
 
     @PostMapping("/delete-product/{id}")
     public Optional<Product> deleteProductById(@PathVariable("id") Long id)
     {
-     return productService.deleteById(id);
+
+     Optional<Product> product= productService.deleteById(id);
+     return product;
     }
 }
