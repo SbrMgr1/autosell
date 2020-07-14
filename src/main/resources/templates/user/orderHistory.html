@@ -25,7 +25,7 @@
             <th scope="row" th:text="${order.id}"></th>
             <td th:text="${order.orderStatus}"></td>
 
-            <td th:each="pro:${order.orderdProducts}">
+            <td th:each="pro:${order.orderedProducts}">
                 ProductID:-<p th:text="${pro.id}"></p>
                 ProductPrice:-<p th:text="${pro.price}"></p>
                 ProductQty-<p th:text="${pro.qty}"></p>
