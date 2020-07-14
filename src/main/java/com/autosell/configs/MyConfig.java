@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -19,7 +20,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 
 @Configuration
-//@EnableWebMvc
 public class MyConfig implements WebMvcConfigurer {
 
 
@@ -41,27 +41,6 @@ public class MyConfig implements WebMvcConfigurer {
     }
 
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//
-//        registry.addResourceHandler("/css_resources/**")
-//                .addResourceLocations("/public", "classpath:/static/css/")
-//                .setCachePeriod(31556926);
-//        registry.addResourceHandler("/font_awesome_resources/**")
-//                .addResourceLocations("/public", "classpath:/static/font-awesome/css/")
-//                .setCachePeriod(31556926);
-//        registry.addResourceHandler("/fonts/**")
-//                .addResourceLocations("/public", "classpath:/static/fonts/")
-//                .setCachePeriod(31556926);
-//        registry.addResourceHandler("/js_resources/**")
-//                .addResourceLocations("/public", "classpath:/static/js/")
-//                .setCachePeriod(31556926);
-//
-//        registry.addResourceHandler("/image_resources/**")
-//                .addResourceLocations("/public", "classpath:/static/images/")
-//                .setCachePeriod(31556926);
-//
-//    }
     
     @Bean
     public LocalValidatorFactoryBean validator(){
@@ -93,6 +72,8 @@ public class MyConfig implements WebMvcConfigurer {
         commonsMultipartResolver.setMaxInMemorySize(10240000);
         return commonsMultipartResolver;
     }
+
+
 
 //    @Override
 //    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {

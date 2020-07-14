@@ -45,7 +45,7 @@ public class SignUpController {
         return "user/signup";
     }
     @PostMapping(value = "/signup-seller")
-    public String saveSellee(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
+    public String saveSeller(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()){
             model.addAttribute("label","Seller");
             model.addAttribute("error_msg","Error Occured.");
