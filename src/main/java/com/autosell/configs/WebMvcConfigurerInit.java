@@ -1,5 +1,7 @@
 package com.autosell.configs;
 
+import com.autosell.controllers.restcontroller.ProductControllerRest;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
@@ -84,7 +86,7 @@ public class WebMvcConfigurerInit implements WebMvcConfigurer {
         public Docket api() {
             return new Docket(DocumentationType.SWAGGER_2)
                     .select()
-                    .apis(RequestHandlerSelectors.any())
+                    .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
                     .paths(PathSelectors.any())
                     .build();
         }
