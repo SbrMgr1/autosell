@@ -31,6 +31,8 @@ public class OrderdProduct implements Serializable {
     @JoinColumn(name="product_id",nullable = false)
     private Product product;
 
+
+
     public OrderdProduct() {
 
     }

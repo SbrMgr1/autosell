@@ -28,6 +28,7 @@ public class ProductOrder {
 
     @OneToMany(cascade = CascadeType.ALL)
     @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "productOrder_id")
     private List<OrderdProduct> products;
 
     public ProductOrder() {
