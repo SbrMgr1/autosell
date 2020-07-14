@@ -122,7 +122,7 @@ public class PaymentController {
             } catch (NullPointerException e) {
 
             }
-            session.setAttribute("cart-item",null);
+            session.setAttribute("cart_item",null);
 //            productService.updateSoldStatusByIds(ids);
             paymentService.save(payment);
             redirectAttributes.addFlashAttribute(payment);
