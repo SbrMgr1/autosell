@@ -130,8 +130,12 @@ public class PaymentController {
         }
 
     }
-
     @GetMapping(value = {"/payment-success"})
+    public String PaymentSuccess(Model model) {
+        model.addAttribute("allPaymentMethod", paymentService.getAllPayment());
+        return "/user/orderCompleted";
+    }
+    @GetMapping(value = {"/paymentList"})
     public String PaymentUpdate(Model model) {
         model.addAttribute("allPaymentMethod", paymentService.getAllPayment());
         return "/user/paymentSuccess";
