@@ -30,6 +30,7 @@ public class AdminOrderController {
         return "admin/orderForm";
     }
     @PostMapping(value = "/save")
+
     public String save(@ModelAttribute("order")ProductOrder productOrder, @RequestParam("order-status") OrderStatusEnum stat, @RequestParam("id")Long id, Model model, HttpSession session){
         productOrderService.get(id).setOrderStatus(stat);
         model.addAttribute("productOrders",productOrderService.getAll());
@@ -51,6 +52,16 @@ public class AdminOrderController {
 
     @RequestMapping(value = {"/history"})
     public String getHistory(Model model){
+        List<ProductOrder> productOrders= productOrderService.getAll();
+        model.addAttribute("productOrders",productOrders);
+        return "admin/history";
+    }
+    @RequestMapping(value = {"/user/delete/{id}"})
+    public String deleteFromUser(@PathVariable("id")Long id, Model model){
+        ProductOrder productOrder=productOrderService.get(id);
+        if(!(productOrder.getOrderStatus().equals("On the way")||productOrder.getOrderStatus().equals("Delivered"))){
+            productOrderService.deleteById(id);
+        }
         List<ProductOrder> productOrders= productOrderService.getAll();
         model.addAttribute("productOrders",productOrders);
         return "admin/history";

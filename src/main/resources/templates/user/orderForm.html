@@ -37,8 +37,7 @@
             <td th:text="${order.billingAddress}"></td>
             <td th:text="${order.buyer.firstName}"></td>
             <td>
-                <a class="btn btn btn-primary" th:href="@{/admin/account/edit/{id}(id = ${order.id})}"> Edit</a>
-                <a class="btn btn btn-danger" th:href="@{/admin/account/delete/{id}(id = ${order.id})}">Delete</a>
+                <a class="btn btn btn-danger" th:href="@{/admin/account/user/delete/{id}(id = ${order.id})}">Delete Order</a>
             </td>
         </tr>
         </tbody>
