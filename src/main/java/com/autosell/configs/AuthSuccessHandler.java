@@ -17,7 +17,7 @@ import java.security.Principal;
 import java.util.Set;
 
 @Configuration
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     HttpSession session;
@@ -28,13 +28,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        System.out.println("hhhhhhhh"+userDetails.getUsername());
-       // session.setAttribute("userName",userName);
-
         if (roles.contains("ROLE_ADMIN")) {
-
             httpServletResponse.sendRedirect("/administration");
-
         } else {
             httpServletResponse.sendRedirect("/");
         }

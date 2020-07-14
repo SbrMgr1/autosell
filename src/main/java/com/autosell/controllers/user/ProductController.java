@@ -4,6 +4,7 @@ import com.autosell.domains.Product;
 import com.autosell.domains.User;
 import com.autosell.helpers.MyHelper;
 import com.autosell.services.CategoryService;
+import com.autosell.services.OrderedProductService;
 import com.autosell.services.ProductService;
 import com.autosell.services.UserService;
 import org.apache.commons.io.FilenameUtils;
@@ -41,6 +42,10 @@ public class ProductController {
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    OrderedProductService orderedProductService;
+
 
     @Autowired
     UserService userService;
@@ -155,9 +160,13 @@ public class ProductController {
         Optional<Product> employeeOptional = productService.findById(id);
         if(employeeOptional.isPresent()){
             Product product = employeeOptional.get();
-            if(product.isSoldStatus() == true){
+
+            if(orderedProductService.findByProductId(id) != null){
+
                 redirectAttributes.addFlashAttribute("error_msg", "This product has been ordered by customer.");
+
             }else{
+
                 productService.deleteById(id);
                 redirectAttributes.addFlashAttribute("success_msg", "Product has been deleted successfully.");
             }
