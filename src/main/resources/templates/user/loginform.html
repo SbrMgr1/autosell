@@ -4,7 +4,7 @@
       layout:decorate="~{user/layouts/layout}"
 >
 <head>
-    <title>Sample</title>
+    <title>AutoSell SignIn</title>
     <!--    <link rel="stylesheet" >-->
 </head>
 <body>
@@ -16,6 +16,16 @@
                 <p>Login with username and password only.</p>
                 <div th:if="${param.error}">
                     <div class="alert alert-danger">
+                        Invalid Credentials.
+                    </div>
+                </div>
+                <div th:if="${param.error_msg}">
+                    <div class="alert alert-danger" th:text="${param.error_msg}">
+                        Invalid Credentials.
+                    </div>
+                </div>
+                <div th:if="${param.success_msg}">
+                    <div class="alert alert-danger" th:text="${param.error_msg}">
                         Invalid Credentials.
                     </div>
                 </div>

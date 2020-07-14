@@ -5,6 +5,8 @@ import com.autosell.domains.*;
 import com.autosell.helpers.MyHelper;
 import com.autosell.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/buyer/payment_input")
@@ -30,6 +29,9 @@ public class PaymentController {
     ProductOrderService productOrderService;
 
     @Autowired
+    ProductService productService;
+
+    @Autowired
     UserService userService;
 
 
@@ -38,6 +40,9 @@ public class PaymentController {
 
     @Autowired
     ShippingAddressService shippingAddressService;
+
+    @Autowired
+    JavaMailSender javaMailSender;
 
 
     @GetMapping(value = {"/", ""})
@@ -72,30 +77,53 @@ public class PaymentController {
             productOrder.setOrderStatus(OrderStatusEnum.PENDING);
             productOrder.setBuyer(user);
 
-            //saving billing address
-            //saving shipping address
+
+            //message is remaining
 
 
 
             //collecting product
-            List<OrderdProduct> orderdProducts = new ArrayList<OrderdProduct>();
+            List<OrderedProduct> orderedProducts = new ArrayList<OrderedProduct>();
+            List<Long> ids = new ArrayList<Long>();
             Map<Long,Product> products = (HashMap<Long,Product>)session.getAttribute("cart_item");
             for(Map.Entry<Long, Product> entry : products.entrySet()) {
                 Long key = entry.getKey();
                 Product p = entry.getValue();
-                OrderdProduct orderdProduct = new OrderdProduct();
-                orderdProduct.setPrice(p.getPrice());
-                orderdProduct.setQty(p.getQty());
-                orderdProduct.setTax(p.getTax());
-                orderdProduct.setProduct(p);
-
-                orderdProducts.add(orderdProduct);
-
+                OrderedProduct orderedProduct = new OrderedProduct();
+                orderedProduct.setPrice(p.getPrice());
+                orderedProduct.setQty(p.getQty());
+                orderedProduct.setTax(p.getTax());
+                orderedProduct.setProduct(p);
+                orderedProducts.add(orderedProduct);
+                ids.add(p.getId());
             }
 
-            productOrder.setOrderdProducts(orderdProducts);
+            productOrder.setOrderedProducts(orderedProducts);
             productOrderService.save(productOrder);
 
+            try {
+                SimpleMailMessage mail = new SimpleMailMessage();
+                mail.setFrom("AutoSell");
+                mail.setTo(user.getEmail());
+                mail.setSubject("Order Placed.");
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append("Hi ");
+                stringBuffer.append(user.getFirstName());
+                stringBuffer.append(",");
+                stringBuffer.append("\n");
+                stringBuffer.append("You placed order in AutoSell successfully.\n");
+                stringBuffer.append("We are very happy by choosing AutoSell.");
+                stringBuffer.append("\nThank you.\n");
+                stringBuffer.append("AutoSell Team");
+                mail.setText(stringBuffer.toString());
+                javaMailSender.send(mail);
+            } catch (NoSuchElementException e) {
+
+            } catch (NullPointerException e) {
+
+            }
+            session.setAttribute("cart_item",null);
+//            productService.updateSoldStatusByIds(ids);
             paymentService.save(payment);
             redirectAttributes.addFlashAttribute(payment);
             return "redirect:/buyer/payment_input/payment-success";
