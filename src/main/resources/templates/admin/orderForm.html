@@ -15,11 +15,9 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Status</th>
-<!--            <th scope="col">Price</a></th>-->
-<!--            <th scope="col">Products</th>-->
-<!--            <th scope="col">Shipping Address</th>-->
-<!--            <th scope="col">Billing Address</th>-->
-<!--            <th scope="col">User</th>-->
+            <th scope="col">Products</th>
+            <th scope="col">Shipping Address</th>
+            <th scope="col">Billing Address</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -28,14 +26,13 @@
             <th scope="row" th:text="${order.id}"></th>
             <td th:text="${order.orderStatus}"></td>
 
-<!--            <td th:each="pro:${order.products}">-->
-<!--                <p th:text="${pro.id}"></p>-->
-<!--                <p th:text="${pro.qty}"></p>-->
-<!--                <p th:text="${pro.price}"></p>-->
-<!--            </td>-->
-<!--            <td th:text="${order.shippingAddress.city}"></td>-->
-<!--            <td th:text="${order.billingAddress.zipCode}"></td>-->
-<!--            <td th:text="${order.buyer.firstName}"></td>-->
+            <td th:each="pro:${order.orderdProducts}">
+                ProductID:-<p th:text="${pro.id}"></p>
+                ProductPrice:-<p th:text="${pro.price}"></p>
+                ProductQty-<p th:text="${pro.qty}"></p>
+            </td>
+            <td th:text="${order.shippingAddress.city}"></td>
+            <td th:text="${order.billingAddress.state}"></td>
             <td>
                 <a class="btn btn btn-primary" th:href="@{/admin/account/edit/{id}(id = ${order.id})}"> Edit</a>
                 <a class="btn btn btn-danger" th:href="@{/admin/account/delete/{id}(id = ${order.id})}">Delete</a>
