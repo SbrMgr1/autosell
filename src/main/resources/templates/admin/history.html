@@ -26,7 +26,6 @@
         <tr th:each="order:${productOrders}">
             <th scope="row" th:text="${order.id}"></th>
             <td th:text="${order.orderStatus}"></td>
-            <td th:text="${order.products.pr}"></td>
 
             <td th:each="pro:${order.products}">
                 <p th:text="${pro.id}"></p>
