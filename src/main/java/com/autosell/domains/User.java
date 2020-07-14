@@ -12,7 +12,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -47,6 +49,8 @@ public class User implements Serializable {
     private Short adminVerification = 0;
 
     private Short userStatus = 0;
+
+    private Long points = 0l;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     private List<Authority> authorities;
@@ -159,5 +163,17 @@ public class User implements Serializable {
 
     public void setBillingAddress(List<BillingAddress> billingAddress) {
         this.billingAddress = billingAddress;
+    }
+
+    public Long getPoints() {
+        return points;
+    }
+
+    public void setPoints(Long points) {
+        this.points = points;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 }

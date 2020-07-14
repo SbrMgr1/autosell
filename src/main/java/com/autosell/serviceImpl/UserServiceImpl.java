@@ -73,6 +73,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addPointsById(Long id, Long points) {
+        userRepository.addPointsById(id,points);
+    }
+
+    @Override
     public User findById(long id) {
          Optional<User> userOptional= userRepository.findById(id);
          try{

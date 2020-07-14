@@ -1,6 +1,7 @@
 package com.autosell.configs;
 
 import com.autosell.domains.User;
+import com.autosell.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
@@ -22,12 +23,19 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    UserService userService;
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        User user = userService.findByUserName(userDetails.getUsername());
+
+        httpServletRequest.getSession().setAttribute("user_points",user.getPoints());
+
         if (roles.contains("ROLE_ADMIN")) {
             httpServletResponse.sendRedirect("/administration");
         } else {

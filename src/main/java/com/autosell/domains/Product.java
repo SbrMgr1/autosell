@@ -41,6 +41,7 @@ public class Product implements Serializable {
     private boolean soldStatus = false;
 
     //@NotNull
+
     Long addedBy;
 
 
