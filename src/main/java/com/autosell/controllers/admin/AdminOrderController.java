@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
-@RequestMapping("/admin/account")
+@RequestMapping({"/admin/account","/seller/account"})
 @Controller
 public class AdminOrderController {
     @Autowired
@@ -23,6 +23,12 @@ public class AdminOrderController {
     @Autowired
     ProductService productService;
 
+    @RequestMapping(value = {"order-list"})
+    public String getSellerOrders(Model model){
+        List<ProductOrder> productOrders= productOrderService.getAll();
+        model.addAttribute("productOrders",productOrders);
+        return "user/orderForm";
+    }
     @RequestMapping(value = {"","/"})
     public String getOrders(Model model){
        List<ProductOrder> productOrders= productOrderService.getAll();
