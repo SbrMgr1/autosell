@@ -24,8 +24,8 @@ import java.io.IOException;
 @Configuration
 @EnableWebSecurity
 @EnableSwagger2
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
     @Autowired
     DataSource dataSource;
 
@@ -62,20 +62,14 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/signin").and()
-                .exceptionHandling().accessDeniedPage("/forbidden");
+                .logoutSuccessUrl("/signin")
+                .and().exceptionHandling().accessDeniedPage("/forbidden");
 
         //Those two settings below is to enable access h2 database via browser
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 
-    @Bean
-    public AuthenticationFailureHandler getFailureHandler(){
-        SimpleUrlAuthenticationFailureHandler handler  =  new SimpleUrlAuthenticationFailureHandler();
-        handler.setDefaultFailureUrl("/login.html");
-        return handler;
-    }
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){

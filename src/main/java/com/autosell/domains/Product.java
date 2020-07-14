@@ -5,10 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @Entity
@@ -24,10 +21,12 @@ public class Product implements Serializable {
 
     @NotNull
     @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
+    @Positive
     Float price;
 
     @NotNull
     @Digits(integer = 100 /*precision*/, fraction = 2 /*scale*/)
+    @Positive
     Float tax;
 
     @NotNull
