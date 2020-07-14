@@ -45,7 +45,7 @@ public class UserController {
             mail.setTo(user.getEmail());
             mail.setSubject("Account Activated");
             StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append("Hi");
+            stringBuffer.append("Hi ");
             stringBuffer.append(user.getFirstName());
             stringBuffer.append(",");
             stringBuffer.append("\n");
@@ -74,7 +74,7 @@ public class UserController {
             mail.setTo(user.getEmail());
             mail.setSubject("Account has been deactivated");
             StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append("Hi");
+            stringBuffer.append("Hi ");
             stringBuffer.append(user.getFirstName());
             stringBuffer.append(",");
             stringBuffer.append("\n");

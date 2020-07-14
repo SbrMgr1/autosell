@@ -2,23 +2,41 @@ package com.autosell.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.io.IOException;
 
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
     @Autowired
-    CustomAuthenticationSuccessHandler successHandler;
+    AuthSuccessHandler successHandler;
+
+
+
+
+    @Bean
+    SimpleUrlAuthenticationFailureHandler authFailureHandler(){
+        return new SimpleUrlAuthenticationFailureHandler();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -35,7 +53,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/administration","/administration/*","/administration/**").hasRole("ADMIN")
                 .antMatchers("/seller","/seller/*","/seller/**").hasRole("SELLER")
-//                .antMatchers("/buyer","/buyer/*","/buyer/**").hasRole("BUYER")
+                .antMatchers("/buyer","/buyer/*","/buyer/**").hasRole("BUYER")
                 .antMatchers("/","/database/**").permitAll()
                 .and().formLogin().loginPage("/signin")
                 .successHandler(successHandler)
@@ -48,6 +66,14 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
+
+    @Bean
+    public AuthenticationFailureHandler getFailureHandler(){
+        SimpleUrlAuthenticationFailureHandler handler  =  new SimpleUrlAuthenticationFailureHandler();
+        handler.setDefaultFailureUrl("/login.html");
+        return handler;
+    }
+
     @Bean
     public PasswordEncoder getPasswordEncoder(){
         return new BCryptPasswordEncoder();

@@ -10,12 +10,21 @@ $(function () {
             data: {
                 id: key,
                 qty: qty
+            },
+            error:  function (jqXHR, timeout, message) {
+                alert(jqXHR.status)
             }
-        }).done(function (resp) {
 
-            $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').removeClass('fa-spinner fa-spin');
-            $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').addClass('fa-check');
-            $('.item-count').text(resp)
+        }).done(function (resp) {
+            if(typeof (resp) == 'number'){
+
+                $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').removeClass('fa-spinner fa-spin');
+                $(`.item-container[data-key="${key}"]`).find('.add-to-cart-btn').find('.check-icon').addClass('fa-check');
+                $('.item-count').text(resp)
+            }else{
+                window.location.href = "/signin?error_msg=Please Login as buyer.";
+            }
+
         });
     }
 

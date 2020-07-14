@@ -3,6 +3,7 @@ package com.autosell.configs;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -32,6 +33,12 @@ public class MyConfig implements WebMvcConfigurer {
         messageSource.setUseCodeAsDefaultMessage(true);
         return messageSource;
 
+    }
+
+    @Bean
+    public MessageSourceAccessor addMessageSourceAccessor(){
+        MessageSourceAccessor messageSourceAccessor = new MessageSourceAccessor(messageSource());
+        return messageSourceAccessor;
     }
 
 
@@ -87,4 +94,6 @@ public class MyConfig implements WebMvcConfigurer {
         commonsMultipartResolver.setMaxInMemorySize(10240000);
         return commonsMultipartResolver;
     }
+
+
 }
