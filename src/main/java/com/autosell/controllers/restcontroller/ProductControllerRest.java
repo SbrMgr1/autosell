@@ -11,8 +11,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/product")
 public class ProductControllerRest {
-  @Autowired
-  ProductService productService;
+
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/get-all-products")
     public List<Product> getAllProducts()
