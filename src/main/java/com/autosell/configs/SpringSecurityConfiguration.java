@@ -62,7 +62,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/signin");
+                .logoutSuccessUrl("/signin").and()
+                .exceptionHandling().accessDeniedPage("/forbidden");
 
         //Those two settings below is to enable access h2 database via browser
         http.csrf().disable();
