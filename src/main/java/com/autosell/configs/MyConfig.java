@@ -16,6 +16,10 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 
 
 @Configuration
@@ -26,7 +30,7 @@ public class MyConfig implements WebMvcConfigurer {
     @Bean("messageSource")
     public MessageSource messageSource() {
 
-        ResourceBundleMessageSource messageSource=new ResourceBundleMessageSource();
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setUseCodeAsDefaultMessage(true);
@@ -35,7 +39,7 @@ public class MyConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public MessageSourceAccessor addMessageSourceAccessor(){
+    public MessageSourceAccessor addMessageSourceAccessor() {
         MessageSourceAccessor messageSourceAccessor = new MessageSourceAccessor(messageSource());
         return messageSourceAccessor;
     }
@@ -62,9 +66,9 @@ public class MyConfig implements WebMvcConfigurer {
 //                .setCachePeriod(31556926);
 //
 //    }
-    
+
     @Bean
-    public LocalValidatorFactoryBean validator(){
+    public LocalValidatorFactoryBean validator() {
 
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageSource());
@@ -79,7 +83,6 @@ public class MyConfig implements WebMvcConfigurer {
     }
 
 
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
@@ -88,10 +91,23 @@ public class MyConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public CommonsMultipartResolver commonsMultipartResolver(){
+    public CommonsMultipartResolver commonsMultipartResolver() {
         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
         commonsMultipartResolver.setMaxInMemorySize(10240000);
         return commonsMultipartResolver;
+    }
+
+
+    //    SWAGGER CONFIG
+    public class SpringFoxConfig {
+        @Bean
+        public Docket api() {
+            return new Docket(DocumentationType.SWAGGER_2)
+                    .select()
+                    .apis(RequestHandlerSelectors.any())
+                    .paths(PathSelectors.any())
+                    .build();
+        }
     }
 
 //    @Override

@@ -32,8 +32,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Optional<Product> deleteById(Long id) {
         productRepository.deleteById(id);
+        return null;
     }
 
     @Override
