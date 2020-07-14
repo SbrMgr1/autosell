@@ -2,6 +2,7 @@ package com.autosell.controllers.admin;
 
 
 import com.autosell.configs.OrderStatusEnum;
+import com.autosell.configs.RoleEnum;
 import com.autosell.domains.ProductOrder;
 import com.autosell.domains.User;
 import com.autosell.services.ProductOrderService;
@@ -64,6 +65,7 @@ public class AdminOrderController {
 
     @GetMapping(value = "/edit/{id}")
     public String editOrder(@ModelAttribute("productOrder")ProductOrder productOrder,@PathVariable("id")Long id, Model model){
+        model.addAttribute("status", RoleEnum.values());
         return "admin/editOrderForm";
     }
 
