@@ -4,6 +4,7 @@ import com.autosell.configs.RoleEnum;
 import com.autosell.domains.User;
 import com.autosell.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,8 @@ public class SignUpController {
             return "user/signup";
         }else{
             user.setAuthorities(RoleEnum.ROLE_BUYER);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(user.getPassword()));
             userService.save(user);
             redirectAttributes.addFlashAttribute("success_msg","Your account has been registered successfully. We will inform you in 24 hours.");
             return "redirect:/signup";

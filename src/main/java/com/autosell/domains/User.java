@@ -3,8 +3,6 @@ package com.autosell.domains;
 import com.autosell.annotations.EmailUnique;
 import com.autosell.annotations.UserNameUnique;
 import com.autosell.configs.RoleEnum;
-import org.apache.tomcat.jni.Address;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -37,7 +35,6 @@ public class User implements Serializable {
     private String userName;
 
     @NotBlank
-    @Size(min = 4)
     private String password;
 
 
@@ -89,8 +86,9 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        this.password = encoder.encode(password);
+
+        this.password = password;
+
     }
 
     public String getEmail() {
