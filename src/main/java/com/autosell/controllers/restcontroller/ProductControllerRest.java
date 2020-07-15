@@ -2,6 +2,7 @@ package com.autosell.controllers.restcontroller;
 
 import com.autosell.domains.Product;
 import com.autosell.services.ProductService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/product")
+@Api(value = "")
 public class ProductControllerRest {
 
     @Autowired
